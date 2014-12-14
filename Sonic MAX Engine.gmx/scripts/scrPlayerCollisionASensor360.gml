@@ -1,0 +1,35 @@
+//-----------------------------------------------------------------
+// -- scrPlayerCollisionASensor(object index, offset);
+//----------------------------------------------------------------- 
+// - Finds Collision on the ground on left side.
+// - Arguments : 2
+// - argument0 : Object to check collision with(object index or instance id)
+// - argument1 : Vertical Offset(real)
+// - Returns   : Colliding with Left Ground Terrain(boolean)
+
+
+    var InitAngle, X2, Y2, Object;
+    
+    InitAngle = scrWrapAngle(Angle); // Round angle to nearest 10.   
+    
+    X2 = x-(9*Cos[InitAngle]); 
+    Y2 = y+(9*Sin[InitAngle]);
+
+   if(AngleMode == 0 &&(Angle < 9 || Angle > 351))
+       Height = GroundSensorHeightMin;
+   else
+       Height = GroundSensorHeight;
+
+    repeat(Height+argument1){
+        Object = collision_point(X2, Y2, argument0, true, true);
+    
+        if(Object != noone &&(Object.Layer == Layer || Object.Layer == -1) &&(Object.Platform == false 
+        ||(Object.Platform == true && AngleMode == 0))){ 
+            return true;
+            break;
+        }else{
+            X2 += Sin[InitAngle];
+            Y2 += Cos[InitAngle];
+        }
+    }
+    return false;
