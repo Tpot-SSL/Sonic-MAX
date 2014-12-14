@@ -3,7 +3,7 @@
     _ObjectHandle = instance_nearest(x, y, objSpringParent);
     if(_ObjectHandle != noone){
         if(_ObjectHandle.Corner == false){
-            if(_ObjectHandle.image_angle == 0 && TerrainId == _ObjectHandle && AngleMode == 0 && Gravity >= 0 && (scrPlayerCollisionASensor(_ObjectHandle, -14) || scrPlayerCollisionBSensor(_ObjectHandle, -14))){
+            if(_ObjectHandle.image_angle == 0 && AngleMode == 0 && Gravity >= 0 && (scrPlayerCollisionASensor(_ObjectHandle, -14) || scrPlayerCollisionBSensor(_ObjectHandle, -14))){
                 Ground    = false;
                 AngleMode = 0;
                 Angle     = 0;

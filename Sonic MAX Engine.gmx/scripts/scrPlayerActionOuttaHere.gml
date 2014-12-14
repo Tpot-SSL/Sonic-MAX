@@ -1,5 +1,8 @@
 
 
+    FlagsAllowXMovement = false;
+    FlagsAllowYMovement = false;
+
     if(round(image_index) == 8 && Ground == true){
         Ground       = false;
         Gravity      = -5;
@@ -15,7 +18,7 @@
             if(instance_exists(objGameOver) == false)
                 instance_create(0, 0, objGameOver);
         }
-        if(y >= view_yview[0]+view_hview[0]+256 && (audio_is_playing(sndGameOver) == false)){
-            game_restart();
-        }
+        if(y >= view_yview[0]+view_hview[0]+256 && (audio_is_playing(sndGameOver) == false))
+            scrGameOver();
+        
     }
