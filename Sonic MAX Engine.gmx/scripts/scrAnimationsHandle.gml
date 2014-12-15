@@ -155,7 +155,6 @@
                 Animation = "OuttaHere";
             break;
         case consActionFly:
-        case consActionFlyCPU:
             if(Underwater == false){
                 if(FlyTimer > 0)
                     Animation = "Fly";
@@ -171,6 +170,18 @@
         case consActionGrab:
             if(Animation != "Grab")
                 Animation = "Grab";
+            break;
+        case consActionCPURespawn:
+            if(CharacterId == consCharacterTails){
+                if(Underwater == false)
+                    Animation = "Fly";
+                else
+                    Animation = "Swim";         
+            }else if(CharacterId == consCharacterKnuckles){
+                Animation = "Glide";
+                image_index = 1;                
+            }else
+                Animation = "Rolling";    
             break;
         case consActionCorkscrew:
             if(Animation != "Corkscrew" && Animation != "Rolling")

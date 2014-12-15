@@ -48,8 +48,8 @@
               
          // --------- Ground Collisions -------------
             if(Ground == true){
+                TerrainIdLast = TerrainId;
                 scrCheckGroundLevel(); // - Check ground position.      
-               // scrPushPlayerX();
                 scrPushPlayerY();   
                 AngleLast2  = AngleLast; 
                 AngleLast   = Angle;         
@@ -75,8 +75,8 @@
                         AngleMode = AngleModeLast;  
                         Angle     = AngleLast;
                     }else if(Speed < 0 && AngleMode == 0 && AngleModeSwitchMode == 1){
-                       // x   -= 12;
-                        //x    = floor(x);
+                        x   -= 12;
+                        x    = floor(x);
                     }else if((Speed > 0 || AngleMode != 0 || AngleModeSwitchMode == 1 ||(AngleLast < 45 && AngleLast > 0))){
                         AngleMode = 1;
                         if(AngleBothSensors == false || abs(angle_difference(AngleMode*90, Angle)) > 10 ||(scrPlayerCollisionASensor360(objParentTerrain, 0) 
@@ -103,9 +103,9 @@
                     if(Angle360Detection == false && AngleModeLast != 3 && (!scrPlayerCollisionBSensor(objParentTerrain, 0) || !scrPlayerCollisionASensor(objParentTerrain, 0)))
                         AngleMode = AngleModeLast;            
                     else if(Speed > 0 && AngleMode == 0 && AngleModeSwitchMode == 1){
-                      //  x   += 12;
-                      //  x    = ceil(x);
-                        //y   += 12;
+                        x   += 12;
+                        x    = ceil(x);
+                        y   += 12;
                     }else if(Speed < 0 || AngleMode != 0 || AngleModeSwitchMode == 1 || ((AngleLast > 315 && AngleLast < 360))){
                         AngleMode = 3; 
                         if(AngleBothSensors == false || abs(angle_difference(AngleMode*90, Angle)) > 10 ||(scrPlayerCollisionASensor360(objParentTerrain, 0) 
@@ -115,7 +115,9 @@
                         AngleMode = AngleModeLast;                   
                 }
             }
+
             scrPlayerWallCollision();
+
             if(Ground && ((!scrPlayerCollisionASensor(objParentTerrain, 0) 
             && !scrPlayerCollisionBSensor(objParentTerrain, 0))) && ForceRoll == false){               
                 // --------- Fall off if not colliding with ground. ---------------

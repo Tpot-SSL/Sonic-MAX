@@ -211,7 +211,7 @@
         AngleSensorHeight       = 90;                    // - Maximum distance the angle checking sensors can move.
         AngleSensorWidth        = 6;
         GroundSensorHeight      = 36;                    // - Maximum distance the ground checking sensors can move.
-        GroundSensorHeightMin   = 30;                    // - Maximum distance the ground checking sensors can move.
+        GroundSensorHeightMin   = 28;                    // - Minimum distance the ground checking sensors can move.
 
         Sounds3D_Ring           = false;                 // - Use 3D sounds for Rings(CPU intensive).
         RingStereoMix           = false;                 // - If set to true the ring sound effect will play on both left and right channels, otherwise it'll switch between the two.
@@ -249,6 +249,8 @@
             Delay = true;
         else
             Delay = false;
+
+        RespawnTimer            = 0;
        
     // ---- Animation data --------------------------------------------------------------------
         AnimationX              = x;
@@ -971,21 +973,35 @@
             KeyAPressed = true;
         else
             KeyAPressed = false;
-        if(Action = consActionJumping){
+        if(Action = consActionJumping)
             KeyA    = true;
-        }else{
+        else
             KeyA    = false;
-        }
-            if(x &lt; view_xview[0]-50){
+        
+        if(x &lt; view_xview[0]-50){
+            
+            if(CharacterId == consCharacterTails || CharacterId == consCharacterKnuckles){
+                y = view_yview[0]-30;
                 x = view_xview[0]-30;
-                y = view_yview[0]-30;
-                Action = consActionFlyCPU;
+            }else{
+                x = FirstPlayer.x-64;
+                RespawnTimer = 0;
+                y = view_yview[0]+view_wview[0]+40;
             }
-            if(x &gt; view_xview[0]+view_wview[0]+50){
+            Action = consActionCPURespawn;
+        }
+        if(x &gt; view_xview[0]+view_wview[0]+50){
+            
+            if(CharacterId == consCharacterTails || CharacterId == consCharacterKnuckles){
+                y = view_yview[0]-30;
                 x = view_xview[0]+view_wview[0]+30;
-                y = view_yview[0]-30;
-                Action = consActionFlyCPU;
+            }else{
+                x = FirstPlayer.x+64;
+                RespawnTimer = 0;
+                y = view_yview[0]+view_wview[0]+40;
             }
+           Action = consActionCPURespawn;
+        }
     }else if(instance_exists(objResults) == true &amp;&amp; instance_exists(objCapsule) == false &amp;&amp; Cutscene == false){
         KeyRight        = true;
         KeyLeft         = false;
@@ -1544,8 +1560,8 @@
             case consActionFly:
                 scrPlayerActionFly();
                 break;
-            case consActionFlyCPU:
-                scrPlayerActionFlyCPU();
+            case consActionCPURespawn:
+                scrPlayerActionCPURespawn();
                 break;
             case consActionGlide:
                 scrPlayerActionGlide();
@@ -1770,7 +1786,8 @@
         HyperForm = true;   
     }
     if(KeyCPressed &amp;&amp; DebugMode){
-        Action = consActionDebug;
+        Action         = consActionDebug;
+        image_xscale   = 1;
     }
 </string>
           </argument>

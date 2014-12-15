@@ -12,10 +12,10 @@
     InitAngle =  scrWrapAngle(AngleMode*90); // Round angle to nearest 10.   
 
        // ----- Set mask under the Player depending on InitAngle -----
-    X = x+((24+argument1)*dsin(InitAngle))-(9*dcos(InitAngle)); 
+    X = x+((22+argument1)*dsin(InitAngle))-(9*dcos(InitAngle)); 
     
     // ----- Set mask under the Player depending on InitAngle -----
-    Y = y+((24+argument1)*dcos(InitAngle))+(9*dsin(InitAngle));
+    Y = y+((22+argument1)*dcos(InitAngle))+(9*dsin(InitAngle));
 
     Y2 = y+(9*dsin(InitAngle));
     

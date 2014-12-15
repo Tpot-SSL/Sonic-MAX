@@ -58,7 +58,7 @@
         else if(Object == objRedSpring || Object == objYellowSpring || Object == objRedSpringCorner || Object == objYellowSpringCorner || Object == objSpike)
             Ins.image_angle = DebugType*90        
         else if(Object == objChaosEmerald)
-            Ins.Id = DebugType;       
+            Ins.Id = DebugType+1;       
     }   
     if(KeyBPressed){
         DebugPos++;

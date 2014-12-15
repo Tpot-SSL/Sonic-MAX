@@ -859,7 +859,7 @@
         <script>scripts\scrPlayerActionHurt.gml</script>
         <script>scripts\scrPlayerActionPipe.gml</script>
         <script>scripts\scrPlayerActionFly.gml</script>
-        <script>scripts\scrPlayerActionFlyCPU.gml</script>
+        <script>scripts\scrPlayerActionCPURespawn.gml</script>
         <script>scripts\scrPlayerActionGlide.gml</script>
         <script>scripts\scrPlayerActionGlideFall.gml</script>
         <script>scripts\scrPlayerActionGlideSlide.gml</script>
@@ -1517,7 +1517,7 @@
     <constant name="consActionLookUp">8</constant>
     <constant name="consActionPipe">9</constant>
     <constant name="consActionFly">10</constant>
-    <constant name="consActionFlyCPU">11</constant>
+    <constant name="consActionCPURespawn">11</constant>
     <constant name="consActionGlide">12</constant>
     <constant name="consActionGlideSlide">13</constant>
     <constant name="consActionGlideFall">14</constant>

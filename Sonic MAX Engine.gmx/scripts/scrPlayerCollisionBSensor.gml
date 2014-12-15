@@ -17,7 +17,9 @@
     X2 = x+(9*Cos[InitAngle]); 
     Y2 = y-(9*Sin[InitAngle]);
     
-    repeat(GroundSensorHeight+argument1){
+    Height = GroundSensorHeight;
+
+    repeat(Height+argument1){
         Object = collision_point(X2, Y2, argument0, true, true);
     
         if(Object != noone &&(Object.Layer == Layer || Object.Layer == -1) &&(Object.Platform == false 

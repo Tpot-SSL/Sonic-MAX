@@ -148,11 +148,6 @@
 
     ReturnAngle = scrWrapAngle(round(point_direction(LeftX, LeftY, RightX, RightY)));   
 
-   // if(angle_difference(AngleMode*90, ReturnAngle) > 34)
-    //    InitAngle -= 45;
-  //  if(ReturnAngle == AngleLast || ReturnAngle == AngleLast2){
-    //    AngleLast = ReturnAngle;
-      //  return Angle;
-   // }else
-        return ReturnAngle;
-     //   InitAngle += 45; 
+
+   
+    return ReturnAngle;

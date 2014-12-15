@@ -123,9 +123,10 @@
             else if(TerrainLeft != noone)
                 TerrainId  = TerrainLeft;         
         }
-        if((Angle < 15 || Angle > 345)&&((scrPlayerCollisionBSensor360(objParentTerrain, 0) == false && Speed > 0)||(scrPlayerCollisionASensor360(objParentTerrain, 0) == false && Speed < 0)))
+        if((Angle < 15 || Angle > 345)&&((scrPlayerCollisionBSensor360(objParentTerrain, 0) == false && scrPlayerCollisionASensor360(objParentTerrain, 0) == false && Speed > 0)
+        ||(scrPlayerCollisionASensor360(objParentTerrain, 0) == false && scrPlayerCollisionBSensor360(objParentTerrain, 0) == false && Speed < 0))){
             y = min(LeftY-20, RightY-20, MiddleY-20);        
-        else{
+        }else{
             if(TerrainLeft != noone &&(LeftY <= RightY || TerrainRight == noone)&&(LeftY <= MiddleY || TerrainMiddle == noone))
                 y = LeftY-20;
             else if(TerrainRight != noone &&(RightY <= LeftY || TerrainLeft == noone) &&(RightY <= MiddleY || TerrainMiddle == noone))

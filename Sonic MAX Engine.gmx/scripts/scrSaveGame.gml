@@ -23,5 +23,7 @@
     file_text_writeln(File);
     file_text_write_string(File, base64_encode(string(global.ChaosEmeralds)));
     file_text_writeln(File);
+    file_text_write_string(File, base64_encode(string(global.Lives)));
+    file_text_writeln(File);
     file_text_write_string(File, base64_encode(string(global.UsePeelout)));
     file_text_close(File);

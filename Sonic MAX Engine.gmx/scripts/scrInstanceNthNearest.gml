@@ -1,3 +1,4 @@
+///instance_nth_nearest(x,y,obj,n);
 /*
 **  Usage:
 **      inst = instance_nth_nearest(x,y,obj,n);

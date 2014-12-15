@@ -9,15 +9,15 @@
 
     var InitAngle, X2, Y2, Object;
     
-    InitAngle = scrWrapAngle(Angle); // Round angle to nearest 10.   
+    InitAngle = scrWrapAngle(round(Angle/10)*10); // Round angle to nearest 10.   
 
     X2 = x+(9*Cos[InitAngle]);     
     Y2 = y-(9*Sin[InitAngle]); 
     
     if(AngleMode == 0 &&(Angle < 7 || Angle > 353))
-       Height = GroundSensorHeightMin;
-   else
-       Height = GroundSensorHeight;
+        Height = GroundSensorHeightMin;
+    else
+        Height = GroundSensorHeight;
     
     repeat(Height+argument1){
         Object = collision_point(X2, Y2, argument0, true, true);

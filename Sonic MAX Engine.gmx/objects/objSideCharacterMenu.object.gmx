@@ -40,9 +40,11 @@
           <argument>
             <kind>1</kind>
             <string>
-    Options     = 2;
+    Options     = 4;
     Option[0]   = "TAILS";
-    Option[1]   = "NONE";
+    Option[1]   = "SONIC";
+    Option[2]   = "KNUCKLES";
+    Option[3]   = "NONE";
     Title       = "CPU SELECT"
     Id          = 1;
 </string>
@@ -71,6 +73,10 @@
     if(OptionId == 0)
         global.Character[1] = consCharacterTails;
     else if(OptionId == 1)
+        global.Character[1] = consCharacterSonic;
+    else if(OptionId == 2)
+        global.Character[1] = consCharacterKnuckles;
+    else if(OptionId == 3)
         global.Character[1] = consCharacterNone;
 </string>
           </argument>
