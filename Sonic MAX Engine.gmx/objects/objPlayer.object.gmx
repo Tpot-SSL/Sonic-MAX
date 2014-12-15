@@ -626,8 +626,8 @@
             case "Rolling":
                 AnimationAngle = 0;
                 if(Action != consActionPipe){
-                    AnimationX  = floor(x)+(5*Sin[Angle]);
-                    AnimationY  = floor(y)+(5*Cos[Angle]);
+                    AnimationX  = floor(x+(_Cos*4)+(5*Sin[Angle]));
+                    AnimationY  = floor(y+(_Sin*4)+(5*Cos[Angle]));
                 }
                 break;          
             case "Idle":
