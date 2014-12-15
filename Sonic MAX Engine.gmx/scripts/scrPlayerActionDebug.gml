@@ -6,8 +6,8 @@
     FlagsAllowYMovement = false;
     FlagsAllowObjectHandle = false;
 
-    Speed    = 0;
-    Gravity  = 0;
+   // Speed    = 0;
+   // Gravity  = 0;
 
 
     sprite_index = object_get_sprite(Object);;
@@ -17,14 +17,24 @@
     }
 
     if(KeyLeft)
-        x -= 2;
+        Speed -= 0.5;
     else if(KeyRight)
-        x += 2;
+        Speed += 0.5;
+    else
+        Speed = 0;
 
     if(KeyUp)
-        y -= 2;
+        Gravity -= 0.5;
     else if(KeyDown)
-        y += 2;  
+        Gravity += 0.5; 
+    else
+        Gravity = 0; 
+
+    Speed = max(min(Speed, 7), -7);   
+    Gravity = max(min(Gravity, 7), -7)
+
+    x += Speed;
+    y += Gravity;
 
     AnimationX = floor(x);
     AnimationY = floor(y);
