@@ -791,40 +791,32 @@
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
+    <scripts name="Recording Engine">
+      <script>scripts\scrRecordInit.gml</script>
+      <script>scripts\scrRecordPlayStep.gml</script>
+      <script>scripts\scrRecordStep.gml</script>
+      <script>scripts\scrRecordEnd.gml</script>
+      <script>scripts\scrRecordWriteKey.gml</script>
+      <script>scripts\scrRecordReadKey.gml</script>
+      <script>scripts\scrRecordInputPlay.gml</script>
+      <script>scripts\scrRecordInputRec.gml</script>
+      <script>scripts\scrRecordRecEnd.gml</script>
+    </scripts>
     <scripts name="Tools">
       <script>scripts\scrWrapAngle.gml</script>
       <script>scripts\scrClampValue.gml</script>
       <script>scripts\scrRotateTowardsAngle.gml</script>
       <script>scripts\scrNumberStringZero.gml</script>
-      <script>scripts\scrDrawParallax.gml</script>
-      <script>scripts\scrParallaxAddBG.gml</script>
       <script>scripts\scrLinearInterpolate.gml</script>
       <script>scripts\scrSafeDivision.gml</script>
       <script>scripts\scrDigitsRound.gml</script>
       <script>scripts\scrGotoLevel.gml</script>
       <script>scripts\scrInstanceNthNearest.gml</script>
       <script>scripts\scrInstanceXthNearest.gml</script>
-      <script>scripts\scrCreateKeySequence.gml</script>
-      <script>scripts\scrHandleKeySequence.gml</script>
-      <script>scripts\scrResetKeySequence.gml</script>
-      <scripts name="Recording Engine">
-        <script>scripts\scrRecordInit.gml</script>
-        <script>scripts\scrRecordPlayStep.gml</script>
-        <script>scripts\scrRecordStep.gml</script>
-        <script>scripts\scrRecordEnd.gml</script>
-        <script>scripts\scrRecordWriteKey.gml</script>
-        <script>scripts\scrRecordReadKey.gml</script>
-        <script>scripts\scrRecordInputPlay.gml</script>
-        <script>scripts\scrRecordInputRec.gml</script>
-        <script>scripts\scrRecordRecEnd.gml</script>
-      </scripts>
       <script>scripts\scrActiveBits.gml</script>
       <script>scripts\scrIsBitActive.gml</script>
       <script>scripts\scrParameters.gml</script>
       <script>scripts\scrDrawScaled.gml</script>
-      <script>scripts\scrHandleDynamicSound.gml</script>
-      <script>scripts\scrTransitionCRT.gml</script>
-      <script>scripts\scrTransitionRibbon.gml</script>
     </scripts>
     <scripts name="Player">
       <scripts name="Object_Handle">
@@ -879,6 +871,7 @@
         <script>scripts\scrPlayerActionQuicksand.gml</script>
         <script>scripts\scrPlayerActionSlide.gml</script>
         <script>scripts\scrPlayerActionOuttaHere.gml</script>
+        <script>scripts\scrPlayerActionDebug.gml</script>
       </scripts>
       <scripts name="Animation_System">
         <script>scripts\scrAnimationSystemAddRepeat.gml</script>
@@ -962,6 +955,17 @@
     <scripts name="Cutscenes">
       <script>scripts\scrCutsceneExample.gml</script>
     </scripts>
+    <scripts name="General">
+      <script>scripts\scrDrawParallax.gml</script>
+      <script>scripts\scrParallaxAddBG.gml</script>
+      <script>scripts\scrCreateKeySequence.gml</script>
+      <script>scripts\scrHandleKeySequence.gml</script>
+      <script>scripts\scrResetKeySequence.gml</script>
+      <script>scripts\scrTransitionCRT.gml</script>
+      <script>scripts\scrTransitionRibbon.gml</script>
+      <script>scripts\scrHandleDynamicSound.gml</script>
+      <script>scripts\scrGameOver.gml</script>
+    </scripts>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shdPaletteController.shader</shader>
@@ -1012,6 +1016,8 @@
       <object>objects\objPause</object>
       <object>objects\objGameOver</object>
       <object>objects\objEndlessExample</object>
+      <object>objects\objParentGimmick</object>
+      <object>objects\objParentLevelObject</object>
     </objects>
     <objects name="Collision_Masks">
       <object>objects\objCollisionMask01</object>
@@ -1487,13 +1493,13 @@
     <room>rooms\roomOptions</room>
     <room>rooms\roomMenu</room>
     <room>rooms\roomTestLevel</room>
+    <room>rooms\roomGreenHill1</room>
     <room>rooms\roomEmeraldHill1</room>
     <room>rooms\roomTestLevel2</room>
     <room>rooms\roomEndlessTest</room>
-    <room>rooms\roomCutscene</room>
     <room>rooms\roomLevelSelect</room>
-    <room>rooms\roomGreenHill1</room>
     <room>rooms\roomCollisionCheck</room>
+    <room>rooms\roomCutscene</room>
     <room>rooms\roomCredits</room>
   </rooms>
   <constants number="77">

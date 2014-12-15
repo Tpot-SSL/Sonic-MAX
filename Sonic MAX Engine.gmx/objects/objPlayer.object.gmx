@@ -143,7 +143,7 @@
         HomingIns               = noone;
         
         DasherId                = noone;
-        
+
         EnemyChain              = 0;
         Underwater              = false;
         UnderwaterTimer         = 1200;
@@ -159,6 +159,10 @@
         Deform                  = false;
 
         ForceRoll               = false;
+
+        FlagsAllowXMovement     = true;
+        FlagsAllowYMovement     = true;
+        FlagsAllowObjectHandle  = true;
 
         Fan                     = false;
 
@@ -446,6 +450,75 @@
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Debug</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>
+    DebugPos   = 0;
+    DebugType  = 0;
+
+    DebugList = ds_list_create();
+    ds_list_add(DebugList, objRing);
+    ds_list_add(DebugList, objMonitor);
+    ds_list_add(DebugList, objCheckpoint);
+    ds_list_add(DebugList, objYellowSpring);
+    ds_list_add(DebugList, objYellowSpringCorner);
+    ds_list_add(DebugList, objRedSpring);
+    ds_list_add(DebugList, objRedSpringCorner);
+    ds_list_add(DebugList, objSpike);
+    ds_list_add(DebugList, objChaosEmerald);
+    with(objParentEnemy){
+        if(ds_list_find_index(other.DebugList, object_index) != -1)
+            continue;
+        ds_list_add(other.DebugList, object_index); 
+    }with(objParentLevelObject){
+        if(ds_list_find_index(other.DebugList, object_index) != -1)
+            continue;
+        ds_list_add(other.DebugList, object_index);   
+    }with(objParentGimmick){
+        if(ds_list_find_index(other.DebugList, object_index) != -1)
+            continue;
+        ds_list_add(other.DebugList, object_index);   
+    }  
+    
+    
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="3" enumb="2">
       <action>
@@ -485,189 +558,186 @@
           <argument>
             <kind>1</kind>
             <string>
-
-
-    if(Layer == 0)
-        instance_activate_object(objParentLayer1);
-    else if(Layer == 1)
-        instance_activate_object(objParentLayer0);
-
-        
-    if(instance_exists(TerrainId) == false)
-        TerrainId = noone;
-        
+    if(Action != consActionDebug){             
+        if(Layer == 0)
+            instance_activate_object(objParentLayer1);
+        else if(Layer == 1)
+            instance_activate_object(objParentLayer0);
     
-
-   
-    if((Speed &lt;= 0 || Ground == false)&amp;&amp; KeyLeft &amp;&amp; InputAlarm &lt;= 0 &amp;&amp;(Action == consActionNormal || Action == consActionSpring || Action == consActionFly 
-    || Action == consActionJumping || Action == consActionQuicksand))
-        image_xscale = -1;
-    if((Speed &gt;= 0 || Ground == false) &amp;&amp; KeyRight &amp;&amp; InputAlarm &lt;= 0 &amp;&amp;(Action == consActionNormal || Action == consActionSpring || Action == consActionFly 
-    || Action == consActionJumping || Action == consActionQuicksand))
-        image_xscale = 1;
-    if(CharacterId == consCharacterKnuckles){
-        if(LeftEdge &lt; 10 &amp;&amp;(Animation == "Balance" || Animation == "Balance2" || Animation == "Balance3"))
+            
+        if(instance_exists(TerrainId) == false)
+            TerrainId = noone;
+    
+       
+        if((Speed &lt;= 0 || Ground == false)&amp;&amp; KeyLeft &amp;&amp; InputAlarm &lt;= 0 &amp;&amp;(Action == consActionNormal || Action == consActionSpring || Action == consActionFly 
+        || Action == consActionJumping || Action == consActionQuicksand))
             image_xscale = -1;
-        if(RightEdge &lt; 10 &amp;&amp;(Animation == "Balance" || Animation == "Balance2" || Animation == "Balance3"))
+        if((Speed &gt;= 0 || Ground == false) &amp;&amp; KeyRight &amp;&amp; InputAlarm &lt;= 0 &amp;&amp;(Action == consActionNormal || Action == consActionSpring || Action == consActionFly 
+        || Action == consActionJumping || Action == consActionQuicksand))
             image_xscale = 1;
-    }
-    
-    if(scrPlayerCollisionBSensor(objParentTerrain, 0) == false &amp;&amp; Ground == true){
-        if(AngleMode == 0)
-            RightEdge = TerrainId.bbox_right-(x-10);
-        else if(AngleMode == 1)
-            RightEdge = abs(TerrainId.bbox_top-(y+10));
-        else if(AngleMode == 2)
-            RightEdge = abs(TerrainId.bbox_left-(x+10));
-        else if(AngleMode == 3)
-            RightEdge = TerrainId.bbox_bottom-(y-10);
-    }else{
-        RightEdge = 30;
-    }
-    if(scrPlayerCollisionASensor(objParentTerrain, 0) == false &amp;&amp; Ground == true){
-        if(AngleMode == 0)
-            LeftEdge = abs(TerrainId.bbox_left-(x+10));
-        else if(AngleMode == 1)
-            LeftEdge = abs(TerrainId.bbox_bottom-(y-10));
-        else if(AngleMode == 2)
-            LeftEdge = abs(TerrainId.bbox_right-(x-10));
-        else if(AngleMode == 3)
-            LeftEdge = abs(TerrainId.bbox_top-(y+10));
-    }else{
-        LeftEdge = 30;
-    }
+        if(CharacterId == consCharacterKnuckles){
+            if(LeftEdge &lt; 10 &amp;&amp;(Animation == "Balance" || Animation == "Balance2" || Animation == "Balance3"))
+                image_xscale = -1;
+            if(RightEdge &lt; 10 &amp;&amp;(Animation == "Balance" || Animation == "Balance2" || Animation == "Balance3"))
+                image_xscale = 1;
+        }
         
-    if(Cutscene == false || AllowAnim == true)       
-        scrAnimationsHandle();
-    
-   // AnimationX = floor(x);        
-   // AnimationY = floor(y);
-    //if(abs(Sin[Angle]) &gt;= 0.1 &amp;&amp; abs(Sin[Angle]) &lt;= 0.9){
-    _Cos = abs(Cos[Angle]);
-    if(_Cos &gt; 0.5)
-        _Cos = 1-_Cos;
-    _Sin = abs(Sin[Angle]);
-    if(_Sin &gt; 0.5)
-        _Sin = 1-_Sin;
-    AnimationX = floor(x+_Cos*4);
-    AnimationY = floor(y+_Sin*4);
-   // }
-    switch(Animation){  
-        case "Rolling":
-            AnimationAngle = 0;
-            if(Action != consActionPipe){
-                AnimationX  = floor(x)+(5*Sin[Angle]);
-                AnimationY  = floor(y)+(5*Cos[Angle]);
-            }
-            break;          
-        case "Idle":
-        case "Hurt":
-        case "CrouchDown":
-        case "LookUp":
-        case "Pushing":
-        case "OuttaHere":
-            AnimationAngle = 0;
-            break;
-        case "Spindash":
-            AnimationAngle = 0;
-            if(Action != consActionPipe){
-                AnimationX  = floor(x)+(7*Sin[Angle]);
-                AnimationY  = floor(y)+(7*Cos[Angle]);
-            }
-            break;       
-        default: 
-            if(Ground == true){
-                if(Landed == false){
-                    if(abs(Angle-AnimationAngle) &lt; 35) 
-                        AnimationAngle = scrRotateTowardsAngle(AnimationAngle, Angle, max(1, abs(Speed)));
-                    else                              
+        if(scrPlayerCollisionBSensor(objParentTerrain, 0) == false &amp;&amp; Ground == true){
+            if(AngleMode == 0)
+                RightEdge = TerrainId.bbox_right-(x-10);
+            else if(AngleMode == 1)
+                RightEdge = abs(TerrainId.bbox_top-(y+10));
+            else if(AngleMode == 2)
+                RightEdge = abs(TerrainId.bbox_left-(x+10));
+            else if(AngleMode == 3)
+                RightEdge = TerrainId.bbox_bottom-(y-10);
+        }else{
+            RightEdge = 30;
+        }
+        if(scrPlayerCollisionASensor(objParentTerrain, 0) == false &amp;&amp; Ground == true){
+            if(AngleMode == 0)
+                LeftEdge = abs(TerrainId.bbox_left-(x+10));
+            else if(AngleMode == 1)
+                LeftEdge = abs(TerrainId.bbox_bottom-(y-10));
+            else if(AngleMode == 2)
+                LeftEdge = abs(TerrainId.bbox_right-(x-10));
+            else if(AngleMode == 3)
+                LeftEdge = abs(TerrainId.bbox_top-(y+10));
+        }else{
+            LeftEdge = 30;
+        }
+            
+        if(Cutscene == false || AllowAnim == true)       
+            scrAnimationsHandle();
+        
+       // AnimationX = floor(x);        
+       // AnimationY = floor(y);
+        //if(abs(Sin[Angle]) &gt;= 0.1 &amp;&amp; abs(Sin[Angle]) &lt;= 0.9){
+        _Cos = abs(Cos[Angle]);
+        if(_Cos &gt; 0.5)
+            _Cos = 1-_Cos;
+        _Sin = abs(Sin[Angle]);
+        if(_Sin &gt; 0.5)
+            _Sin = 1-_Sin;
+        AnimationX = floor(x+_Cos*4);
+        AnimationY = floor(y+_Sin*4);
+       // }
+        switch(Animation){  
+            case "Rolling":
+                AnimationAngle = 0;
+                if(Action != consActionPipe){
+                    AnimationX  = floor(x)+(5*Sin[Angle]);
+                    AnimationY  = floor(y)+(5*Cos[Angle]);
+                }
+                break;          
+            case "Idle":
+            case "Hurt":
+            case "CrouchDown":
+            case "LookUp":
+            case "Pushing":
+            case "OuttaHere":
+                AnimationAngle = 0;
+                break;
+            case "Spindash":
+                AnimationAngle = 0;
+                if(Action != consActionPipe){
+                    AnimationX  = floor(x)+(7*Sin[Angle]);
+                    AnimationY  = floor(y)+(7*Cos[Angle]);
+                }
+                break;       
+            default: 
+                if(Ground == true){
+                    if(Landed == false){
+                        if(abs(Angle-AnimationAngle) &lt; 35) 
+                            AnimationAngle = scrRotateTowardsAngle(AnimationAngle, Angle, max(1, abs(Speed)));
+                        else                              
+                            AnimationAngle = Angle;
+                    }else 
                         AnimationAngle = Angle;
                 }else 
-                    AnimationAngle = Angle;
-            }else 
-                AnimationAngle = scrRotateTowardsAngle(AnimationAngle, 0, 4);
-            break;
-    }
-
-    if(Use360SpriteRotation == true){
-        if(UseWorldsRotation == false || abs(angle_difference(0, AnimationAngle)) &gt; 45)
-        image_angle = AnimationAngle;
-    }else{  
-        if(Landed == true)
-            image_angle = round(Angle/45)*45;  
-   
-        if(Ground == true &amp;&amp; Animation != "Spindash" &amp;&amp; Animation != "Rolling" &amp;&amp; Animation != "Hurt"){
-            if(Angle &lt;= 180)   
-                image_angle = scrWrapAngle(floor(Angle/90)*90);   
-            else if(Angle &gt; 180)   
-                image_angle = scrWrapAngle(ceil(Angle/90)*90);
-            if(angle_difference(image_angle, Angle) == 180 || angle_difference(image_angle, Angle) == -180){
-                image_angle -= 180;
-            }
-
-            if(angle_difference(image_angle, Angle) &lt; -40)
-                image_angle += 45;
-            if(angle_difference(image_angle, Angle) &gt; 40)
-                image_angle -= 45;           
-        }else
-            image_angle = round(scrRotateTowardsAngle(AnimationAngle, 0, 4)/45)*45;   
-
-        if(Animation == "Spindash" || Animation == "Rolling" || Animation == "Hurt" || Animation == "Idle" || Animation == "CrouchDown" 
-        || Animation == "LookUp" || Animation == "OuttaHere" || Animation == "Pushing")
-            image_angle = 0;
-    }
-   // --------------------------------------------------------------
-
-    AnimationValue   = scrAnimationSystemFindValue(Animation);  
-    if(AnimationPrevious != Animation){
-        AnimationRepeats        = 0;
-        image_index             = 0;
-        AnimationTimer = ds_grid_get(Animations, consAnimationsTime, AnimationValue);  
-        if(Animation != "IdleWait0" &amp;&amp; Animation != "IdleWait1" &amp;&amp; Animation != "IdleWait2" &amp;&amp; Animation != "Blink" &amp;&amp; Animation != "IdleWait3" 
-        &amp;&amp;(CharacterId != consCharacterTails || Animation != "Idle"))
-            AnimationTotalFrames    = 0;
-    }
-    AnimationLength   = ds_grid_get(Animations, consAnimationsTime, AnimationValue);  
-    sprite_index    = ds_grid_get(Animations, consAnimationsSprite, AnimationValue);
-    if((Animation != "Running" &amp;&amp; Animation != "Fly" &amp;&amp; Animation != "Walking" &amp;&amp; (Action != consActionCorkscrew) &amp;&amp;((Action != consActionRolling &amp;&amp;(Action != consActionJumping)) || CharacterId == consCharacterTails)&amp;&amp; Animation != "Corkscrew")||(Action == consActionSpring &amp;&amp; Animation == "Walking"))
-        image_index     += ds_grid_get(Animations, consAnimationsSpeed, AnimationValue);
-    else if(Action == consActionSpring &amp;&amp; Animation == "Corkscrew")
-        image_index     += 0.35;
-    else if(Animation == "Running" || Animation == "Walking")
-        image_index     += 1/max(8-abs(Speed), 1);
-    else if(Action == consActionRolling ||(Action == consActionCorkscrew &amp;&amp; Animation == "Rolling"))
-        image_index     += 1/max((5-abs(Speed)), 1);
-    else if(Action == consActionJumping)
-        image_index     += JumpAnimSpeed;
-    else if(Animation == "Fly"){
-        if(Gravity &gt; 0)
-            image_index     += 0.75;
-        else
-            image_index     += 1;
-    }
-
-    if(AnimationTimer &gt; 0 &amp;&amp; AnimationLength &gt; 0){
-        AnimationTimer -= 1;
-    }   
-    AnimationPrevious = Animation;
-    if(image_index &gt;= image_number ||(AnimationLength &gt; 0 &amp;&amp; AnimationTimer &lt;= 0)){
-        AnimationRepeats += 1;
-        image_index = ds_grid_get(Animations, consAnimationsLoop, AnimationValue);
-        if(AnimationRepeats &gt;= ds_grid_get(Animations, consAnimationsRepeat, AnimationValue) &amp;&amp; Animation != ds_grid_get(Animations, consAnimationsEndAnim, AnimationValue)){
-            Animation           = ds_grid_get(Animations, consAnimationsEndAnim, AnimationValue);
-            //Value               = 
-            sprite_index        = ds_grid_get(Animations, consAnimationsSprite, scrAnimationSystemFindValue(Animation));
-            image_index         = 0;
-            AnimationRepeats    = 0;
+                    AnimationAngle = scrRotateTowardsAngle(AnimationAngle, 0, 4);
+                break;
         }
-    }
     
-    if(Invincibility == 1 &amp;&amp; InvincibilityTimer mod 4 == 0){
-        image_alpha = !image_alpha;
-    }else if(Invincibility != 1){
-        image_alpha = 1;
-    }
+        if(Use360SpriteRotation == true){
+            if(UseWorldsRotation == false || abs(angle_difference(0, AnimationAngle)) &gt; 45)
+            image_angle = AnimationAngle;
+        }else{  
+            if(Landed == true)
+                image_angle = round(Angle/45)*45;  
+       
+            if(Ground == true &amp;&amp; Animation != "Spindash" &amp;&amp; Animation != "Rolling" &amp;&amp; Animation != "Hurt"){
+                if(Angle &lt;= 180)   
+                    image_angle = scrWrapAngle(floor(Angle/90)*90);   
+                else if(Angle &gt; 180)   
+                    image_angle = scrWrapAngle(ceil(Angle/90)*90);
+                if(angle_difference(image_angle, Angle) == 180 || angle_difference(image_angle, Angle) == -180){
+                    image_angle -= 180;
+                }
+    
+                if(angle_difference(image_angle, Angle) &lt; -40)
+                    image_angle += 45;
+                if(angle_difference(image_angle, Angle) &gt; 40)
+                    image_angle -= 45;           
+            }else
+                image_angle = round(scrRotateTowardsAngle(AnimationAngle, 0, 4)/45)*45;   
+    
+            if(Animation == "Spindash" || Animation == "Rolling" || Animation == "Hurt" || Animation == "Idle" || Animation == "CrouchDown" 
+            || Animation == "LookUp" || Animation == "OuttaHere" || Animation == "Pushing")
+                image_angle = 0;
+        }
+       // --------------------------------------------------------------
+    
+        AnimationValue   = scrAnimationSystemFindValue(Animation);  
+        if(AnimationPrevious != Animation){
+            AnimationRepeats        = 0;
+            image_index             = 0;
+            AnimationTimer = ds_grid_get(Animations, consAnimationsTime, AnimationValue);  
+            if(Animation != "IdleWait0" &amp;&amp; Animation != "IdleWait1" &amp;&amp; Animation != "IdleWait2" &amp;&amp; Animation != "Blink" &amp;&amp; Animation != "IdleWait3" 
+            &amp;&amp;(CharacterId != consCharacterTails || Animation != "Idle"))
+                AnimationTotalFrames    = 0;
+        }
+        AnimationLength   = ds_grid_get(Animations, consAnimationsTime, AnimationValue);  
+        sprite_index    = ds_grid_get(Animations, consAnimationsSprite, AnimationValue);
+        if((Animation != "Running" &amp;&amp; Animation != "Fly" &amp;&amp; Animation != "Walking" &amp;&amp; (Action != consActionCorkscrew) &amp;&amp;((Action != consActionRolling &amp;&amp;(Action != consActionJumping)) || CharacterId == consCharacterTails)&amp;&amp; Animation != "Corkscrew")||(Action == consActionSpring &amp;&amp; Animation == "Walking"))
+            image_index     += ds_grid_get(Animations, consAnimationsSpeed, AnimationValue);
+        else if(Action == consActionSpring &amp;&amp; Animation == "Corkscrew")
+            image_index     += 0.35;
+        else if(Animation == "Running" || Animation == "Walking")
+            image_index     += 1/max(8-abs(Speed), 1);
+        else if(Action == consActionRolling ||(Action == consActionCorkscrew &amp;&amp; Animation == "Rolling"))
+            image_index     += 1/max((5-abs(Speed)), 1);
+        else if(Action == consActionJumping)
+            image_index     += JumpAnimSpeed;
+        else if(Animation == "Fly"){
+            if(Gravity &gt; 0)
+                image_index     += 0.75;
+            else
+                image_index     += 1;
+        }
+    
+        if(AnimationTimer &gt; 0 &amp;&amp; AnimationLength &gt; 0){
+            AnimationTimer -= 1;
+        }   
+        AnimationPrevious = Animation;
+        if(image_index &gt;= image_number ||(AnimationLength &gt; 0 &amp;&amp; AnimationTimer &lt;= 0)){
+            AnimationRepeats += 1;
+            image_index = ds_grid_get(Animations, consAnimationsLoop, AnimationValue);
+            if(AnimationRepeats &gt;= ds_grid_get(Animations, consAnimationsRepeat, AnimationValue) &amp;&amp; Animation != ds_grid_get(Animations, consAnimationsEndAnim, AnimationValue)){
+                Animation           = ds_grid_get(Animations, consAnimationsEndAnim, AnimationValue);
+                //Value               = 
+                sprite_index        = ds_grid_get(Animations, consAnimationsSprite, scrAnimationSystemFindValue(Animation));
+                image_index         = 0;
+                AnimationRepeats    = 0;
+            }
+        }
         
+        if(Invincibility == 1 &amp;&amp; InvincibilityTimer mod 4 == 0)
+            image_alpha = !image_alpha;
+        else if(Invincibility != 1)
+            image_alpha = 1;
+        
+    }    
     
 </string>
           </argument>
@@ -717,12 +787,12 @@
                 if(global.Lives &gt; 0){
                     room_restart();                
                 }else
-                    game_restart();
+                    scrGameOver();
             }else{
-                depth = -19;
-                x = global.Player[0].x;
-                y = global.Player[0].y;
-                Action = consActionNormal;
+                depth   = -19;
+                x       = global.Player[0].x;
+                y       = global.Player[0].y;
+                Action  = consActionNormal;
             }
         }
     }
@@ -1303,7 +1373,7 @@
         }
     }
         
-    if(Action != consActionPipe &amp;&amp; Action != consActionOuttaHere){
+    if(FlagsAllowXMovement == true){
         scrPlayerHandleBreakableTerrain();
         scrPlayerWallCollision();
     }
@@ -1320,9 +1390,9 @@
     }
    
         
-    if(Action != consActionPipe &amp;&amp; Action != consActionFlyCPU &amp;&amp; Action != consActionOuttaHere){
+    if(FlagsAllowXMovement == true)
         scrPlayerSpeedMovement();   
-    }
+    
         //scrPlayerHandleMonitors();
         
 </string>
@@ -1349,9 +1419,8 @@
     if(Action == consActionDead)
         exit;
         
-    if(Action != consActionPipe &amp;&amp; Action != consActionFlyCPU &amp;&amp; Action != consActionOuttaHere){
+    if(FlagsAllowYMovement == true){
         scrPlayerHandleBreakableTerrain(); 
-        //scrPlayerWallCollision();  
         
         if(Ground == false){   
             // - Air Friction -------
@@ -1359,9 +1428,8 @@
                 Speed -= (Speed/0.125)/256;  
            
             scrPlayerGravityMovement();
-            if(Ground == true)
-                exit;
-            if(Action != consActionGlide &amp;&amp; Action != consActionClimb &amp;&amp; Action != consActionClimbRise &amp;&amp; Action != consActionTransform
+;
+            if(Ground == false &amp;&amp; Action != consActionGlide &amp;&amp; Action != consActionClimb &amp;&amp; Action != consActionClimbRise &amp;&amp; Action != consActionTransform
             &amp;&amp; Action != consActionGrab &amp;&amp; Action != consActionQuicksand) 
                 Gravity += GravityRate*SpeedMultiplier;        
         }
@@ -1390,7 +1458,7 @@
             <kind>1</kind>
             <string>///Object Handle
 
-    if(Action != consActionFlyCPU){
+    if(FlagsAllowObjectHandle){
         scrPlayerHandleRings();
         scrPlayerHandleSprings();
         scrPlayerHandleBumpers();
@@ -1517,6 +1585,9 @@
                 break;
             case consActionOuttaHere:
                 scrPlayerActionOuttaHere();
+                break;
+            case consActionDebug:
+                scrPlayerActionDebug();
                 break;
         }
     }
@@ -1698,6 +1769,9 @@
     if(keyboard_check_pressed(ord("E")) &amp;&amp; SuperForm == true){
         HyperForm = true;   
     }
+    if(KeyCPressed &amp;&amp; DebugMode){
+        Action = consActionDebug;
+    }
 </string>
           </argument>
         </arguments>
@@ -1742,6 +1816,7 @@
             <kind>1</kind>
             <string>    
     ds_grid_destroy(Animations);
+    ds_list_destroy(DebugList);
 </string>
           </argument>
         </arguments>
