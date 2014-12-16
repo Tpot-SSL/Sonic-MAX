@@ -30,9 +30,9 @@
             scrAnimationSystemAddRepeat("Skidding", 0.125, sprS2SonicSkid, false, 1, "Walking");
             scrAnimationSystemAddSimple("Hurt", 0.1, sprS2SonicHurt);
     
-            scrAnimationSystemAddSimple("BalanceIn",   0.06, sprS2SonicBalanceIn);
-            scrAnimationSystemAddSimple("BalanceOut",  0.06, sprS2SonicBalanceOut);
-            scrAnimationSystemAddSimple("BalanceOut2", 0.06, sprS2SonicBalanceOut2);
+            scrAnimationSystemAddSimple("BalanceIn",   0.05, sprS2SonicBalanceIn);
+            scrAnimationSystemAddSimple("BalanceOut",  0.1, sprS2SonicBalanceOut);
+            scrAnimationSystemAddSimple("BalanceOut2", 0.25, sprS2SonicBalanceOut2);
     
             scrAnimationSystemAddSimple("Rolling",  0.2,  sprS2SonicRoll);
             scrAnimationSystemAddSimple("Spindash", 1,  sprS2SonicSpindash);

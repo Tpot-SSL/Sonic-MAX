@@ -621,15 +621,15 @@
         _Sin = abs(Sin[Angle]);
         if(_Sin &gt; 0.5)
             _Sin = 1-_Sin;
-        AnimationX = floor(x+_Cos*4);
-        AnimationY = floor(y+_Sin*4);
+        AnimationX = round(x+_Cos*4);
+        AnimationY = round(y+_Sin*4);
        // }
         switch(Animation){  
             case "Rolling":
                 AnimationAngle = 0;
                 if(Action != consActionPipe){
-                    AnimationX  = floor(x+(_Cos*4)+(5*Sin[Angle]));
-                    AnimationY  = floor(y+(_Sin*4)+(5*Cos[Angle]));
+                    AnimationX  = round(x+(_Cos*4))+(5*Sin[Angle]);
+                    AnimationY  = round(y+(_Sin*4))+(5*Cos[Angle]);
                 }
                 break;          
             case "Idle":
@@ -792,6 +792,9 @@
                     scrGameOver();
             }else{
                 depth   = -19;
+                FlagsAllowXMovement = true;
+                FlagsAllowYMovement = true;
+                FlagsAllowObjectHandle = true;
                 x       = global.Player[0].x;
                 y       = global.Player[0].y;
                 Action  = consActionNormal;
@@ -868,8 +871,13 @@
                     Camera.y = max(Camera.y-2, floor(y)); 
                 else
                     LookTimer = 0;
-            }else
+            }else{
                 Camera.y    = floor(AnimationY);
+                if(Action != consActionPipe &amp;&amp; Animation = "Rolling"){
+                //    AnimationX  = round(x+(_Cos*4))+(5*Sin[Angle]);
+                    Camera.y  -= (5*Cos[Angle]);
+                }
+            }
         }
     }
    
@@ -1064,7 +1072,7 @@
         
         //instance_create(x-X, y-Y, objInvSparkle);
         if(InvincibilityTimer &lt;= 0){
-            if(audio_is_playing(sndInvincibility) &amp;&amp; Invincibility == 2){
+            if(audio_is_playing(sndInvincibility) &amp;&amp; Invincibility == 2 &amp;&amp; audio_is_playing(sndSuperSonic) == false){
                 audio_stop_sound(sndInvincibility);
                 global.CurrentSong = ds_map_find_value(LvlMusic, room);
                 audio_resume_sound(global.CurrentSong);
@@ -1076,7 +1084,7 @@
     if(SpeedSneakers == true){
         SpeedSneakersTimer -= 1;
         if(SpeedSneakersTimer &lt;= 0){
-            if(audio_is_playing(sndSpeedSneakers)){
+            if(audio_is_playing(sndSpeedSneakers) &amp;&amp; audio_is_playing(sndSuperSonic) == false){
                 audio_stop_sound(sndSpeedSneakers);
                 global.CurrentSong = ds_map_find_value(LvlMusic, room);
                 audio_resume_sound(global.CurrentSong);
