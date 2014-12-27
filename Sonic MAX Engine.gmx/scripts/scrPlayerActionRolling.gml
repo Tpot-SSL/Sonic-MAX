@@ -24,6 +24,7 @@
          Action         = consActionJumping;
          JumpAnimSpeed  = 1/max((5-abs(Speed)), 1);
          JumpVariable   = false;
+         
      }
      if(KeyAPressed && Ground == true && ForceRoll == false){
         scrPlayerJump();

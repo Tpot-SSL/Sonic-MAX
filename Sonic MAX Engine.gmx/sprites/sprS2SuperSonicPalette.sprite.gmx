@@ -10,7 +10,7 @@
   <bbox_left>0</bbox_left>
   <bbox_right>0</bbox_right>
   <bbox_top>0</bbox_top>
-  <bbox_bottom>5</bbox_bottom>
+  <bbox_bottom>3</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
@@ -18,7 +18,7 @@
   </TextureGroups>
   <For3D>0</For3D>
   <width>1</width>
-  <height>6</height>
+  <height>4</height>
   <frames>
     <frame index="0">images\sprS2SuperSonicPalette_0.png</frame>
     <frame index="1">images\sprS2SuperSonicPalette_1.png</frame>
@@ -30,5 +30,6 @@
     <frame index="7">images\sprS2SuperSonicPalette_7.png</frame>
     <frame index="8">images\sprS2SuperSonicPalette_8.png</frame>
     <frame index="9">images\sprS2SuperSonicPalette_9.png</frame>
+    <frame index="10">images\sprS2SuperSonicPalette_10.png</frame>
   </frames>
 </sprite>

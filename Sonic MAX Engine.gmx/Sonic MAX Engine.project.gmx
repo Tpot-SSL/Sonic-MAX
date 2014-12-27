@@ -903,6 +903,7 @@
           <script>scripts\scrPlayerCollisionASensorObj.gml</script>
           <script>scripts\scrPlayerCollisionASensorClamp.gml</script>
           <script>scripts\scrPlayerCollisionASensor360.gml</script>
+          <script>scripts\scrPlayerCollisionMSensor360.gml</script>
           <script>scripts\scrPlayerCollisionBSensor.gml</script>
           <script>scripts\scrPlayerCollisionBSensorObj.gml</script>
           <script>scripts\scrPlayerCollisionBSensorClamp.gml</script>
@@ -924,6 +925,7 @@
         <script>scripts\scrCheckAngleLegacy.gml</script>
         <script>scripts\scrCheckGroundLevel.gml</script>
         <script>scripts\scrPlayerWallCollision.gml</script>
+        <script>scripts\scrPushPlayerSafe.gml</script>
         <script>scripts\scrPushPlayerX.gml</script>
         <script>scripts\scrPushPlayerX_Id.gml</script>
         <script>scripts\scrPushPlayerY.gml</script>
@@ -1243,6 +1245,7 @@
       <object>objects\objCharacterMenu</object>
       <object>objects\objSideCharacterMenu</object>
       <object>objects\objOptionsMenu</object>
+      <object>objects\objStartupMenu</object>
       <object>objects\objCursor</object>
       <object>objects\objDataSelect</object>
       <object>objects\objDataSelectParent</object>

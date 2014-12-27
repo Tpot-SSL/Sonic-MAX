@@ -7,7 +7,7 @@
 
    // var InitAngle;   
     
-    var InitAngle = scrWrapAngle(AngleMode*90);
+    InitAngle = scrWrapAngle(AngleMode*90);
     
     var LeftX2    = floor(x)-(9*Cos[InitAngle]);
     var LeftY2    = floor(y)+(9*Sin[InitAngle]);
@@ -36,7 +36,7 @@
 
     repeat(GroundSensorHeight+Add){
         TerrainLeft = collision_point(LeftX2, LeftY2, objParentTerrain, true, true);
-        if(TerrainLeft != noone){
+        /*if(TerrainLeft != noone){
             TerrainLeft2 = collision_point(LeftX2-(Sin[InitAngle]), LeftY2-(Cos[InitAngle]), TerrainLeft, true, true)
             if(TerrainLeft2 != noone &&(TerrainLeft2.Layer == Layer || TerrainLeft2.Layer == -1) &&(TerrainLeft2.Platform == false 
             ||(TerrainLeft2.Platform == true && AngleMode == 0) || (Object.Platform == 2  && Action != consActionJumping))){
@@ -45,9 +45,9 @@
                 LeftY2 = y+20*Cos[InitAngle]+9*Sin[InitAngle]; 
                 break;
             }
-        }
+        }*/
         if(TerrainLeft != noone &&(TerrainLeft.Layer == Layer || TerrainLeft.Layer == -1) &&(TerrainLeft.Platform == false 
-        ||(TerrainLeft.Platform == true && AngleMode == 0)|| (Object.Platform == 2  && Action != consActionJumping))){ 
+        ||(TerrainLeft.Platform == true && AngleMode == 0)|| (TerrainLeft.Platform == 2  && Action != consActionJumping))){ 
             LeftX  = LeftX2;
             LeftY  = LeftY2;
             break;
@@ -61,7 +61,7 @@
     TerrainRight     = noone;
     repeat(GroundSensorHeight+Add){
         TerrainRight = collision_point(RightX2, RightY2, objParentTerrain, true, true);
-        if(TerrainRight != noone){
+        /*if(TerrainRight != noone){
             TerrainRight2 = collision_point(RightX2-(Sin[InitAngle]), RightY2-(Cos[InitAngle]), TerrainRight, true, true)
             if(TerrainRight2 != noone &&(TerrainRight2.Layer == Layer || TerrainRight2.Layer == -1) &&(TerrainRight2.Platform == false 
             ||(TerrainRight2.Platform == true && AngleMode == 0) || (Object.Platform == 2  && Action != consActionJumping))){
@@ -70,9 +70,9 @@
                 RightY2 = y+20*Cos[InitAngle];   
                 break;
             }
-        }
+        }*/
         if(TerrainRight != noone &&(TerrainRight.Layer == Layer || TerrainRight.Layer == -1) &&(TerrainRight.Platform == false 
-        ||(TerrainRight.Platform == true && AngleMode == 0)|| (Object.Platform == 2  && Action != consActionJumping))){ 
+        ||(TerrainRight.Platform == true && AngleMode == 0)|| (TerrainRight.Platform == 2  && Action != consActionJumping))){ 
             RightX  = RightX2;
             RightY  = RightY2;
             break;
@@ -97,7 +97,7 @@
             }
         }
         if(TerrainMiddle != noone &&(TerrainMiddle.Layer == Layer || TerrainMiddle.Layer == -1) &&(TerrainMiddle.Platform == false 
-        ||(TerrainMiddle.Platform == true && AngleMode == 0)|| (Object.Platform == 2  && Action != consActionJumping))){ 
+        ||(TerrainMiddle.Platform == true && AngleMode == 0)|| (TerrainMiddle.Platform == 2  && Action != consActionJumping))){ 
             MiddleX  = MiddleX2;
             MiddleY  = MiddleY2;
             break;
@@ -123,7 +123,7 @@
             else if(TerrainLeft != noone)
                 TerrainId  = TerrainLeft;         
         }
-        if((Angle < 15 || Angle > 345)&&((scrPlayerCollisionBSensor360(objParentTerrain, 0) == false && scrPlayerCollisionASensor360(objParentTerrain, 0) == false && Speed > 0)
+        /*if((Angle < 15 || Angle > 345)&&((scrPlayerCollisionBSensor360(objParentTerrain, 0) == false && scrPlayerCollisionASensor360(objParentTerrain, 0) == false && Speed > 0)
         ||(scrPlayerCollisionASensor360(objParentTerrain, 0) == false && scrPlayerCollisionBSensor360(objParentTerrain, 0) == false && Speed < 0))){
             y = min(LeftY-20, RightY-20, MiddleY-20);        
         }else{
@@ -134,7 +134,17 @@
             else if(TerrainMiddle != noone && MiddleY <= RightY && MiddleY <= LeftY)
                 y = MiddleY-20;
         }
-        
+        */
+        if(TerrainRight != noone && TerrainLeft != noone && TerrainMiddle != noone){          
+            y = min(LeftY, RightY, MiddleY)-20;              
+        }else if(TerrainLeft == noone &&(TerrainMiddle != noone || abs((RightY-20)-floor(y)) <= 1) && TerrainRight != noone){
+            y = RightY-20;  
+            //Angle = scrWrapAngle(round(point_direction(MiddleX, MiddleY, RightX, RightY)))
+        }else if(TerrainRight == noone &&(TerrainMiddle != noone || abs((LeftY-20)-floor(y)) <= 1) && TerrainLeft != noone){
+
+           // Angle = scrWrapAngle(round(point_direction(LeftX, LeftY, MiddleX, MiddleY)))
+            y = LeftY-20; 
+        }
     }else if(AngleMode == 1){
         if((MiddleX < LeftX && MiddleX < RightX)&& TerrainMiddle != noone){
                 TerrainId = TerrainMiddle;                
@@ -150,7 +160,13 @@
             else if(TerrainLeft != noone)
                 TerrainId  = TerrainLeft;         
         }
-        x = min(LeftX-20, RightX-20, MiddleX-20);
+        if(TerrainRight != noone && TerrainLeft != noone && TerrainMiddle != noone){          
+            x = min(LeftX, RightX, MiddleX)-20;              
+        }else if(TerrainLeft == noone && (TerrainMiddle != noone || abs((RightX-20)-x) <= 1))
+            x = RightX-20;  
+        else if(TerrainRight == noone && (TerrainMiddle != noone || abs((LeftX-20)-x) <= 1))
+            x = LeftX-20;             
+        
     }else if(AngleMode == 2){
         if((MiddleY > LeftY && MiddleY > RightY)&& TerrainMiddle != noone){
                 TerrainId = TerrainMiddle;                
@@ -167,7 +183,12 @@
                 TerrainId  = TerrainLeft;         
         }               
         
-        y = max(LeftY+20, RightY+20, MiddleY+20);
+        if(TerrainRight != noone && TerrainLeft != noone && TerrainMiddle != noone){          
+            y = max(LeftY, RightY, MiddleY)+20;              
+        }else if(TerrainLeft == noone &&(TerrainMiddle != noone || abs((RightY-20)-y) < 2))
+            y = RightY+20;  
+        else if(TerrainRight == noone &&(TerrainMiddle != noone || abs((LeftY-20)-y) < 2))
+            y = LeftY+20; 
     }else if(AngleMode == 3){
         if((MiddleX > LeftX && MiddleX > RightX)&& TerrainMiddle != noone){
                 TerrainId = TerrainMiddle;                
@@ -183,5 +204,16 @@
             else if(TerrainLeft != noone)
                 TerrainId  = TerrainLeft;         
         }
-        x = max(LeftX+20, RightX+20, MiddleX+20);
+        if(TerrainRight != noone && TerrainLeft != noone && TerrainMiddle != noone){          
+            x = max(LeftX, RightX, MiddleX)+20;              
+        }else if(TerrainLeft == noone && (TerrainMiddle != noone || abs((RightX-20)-x) < 2))
+            x = RightX+20;  
+        else if(TerrainRight == noone && (TerrainMiddle != noone || abs((LeftX-20)-x) < 2))
+            x = LeftX+20; 
     }
+
+    AnglePos[2,0] = LeftX;
+    AnglePos[2,1] = LeftY;
+
+    AnglePos[3,0] = RightX;
+    AnglePos[3,1] = RightY;

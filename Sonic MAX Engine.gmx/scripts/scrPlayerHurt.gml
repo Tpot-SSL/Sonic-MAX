@@ -12,9 +12,8 @@
                 Gravity     = 0;
             Ground      = false;
             Speed       = 2*sign(x-Object.x);
-            if(global.CPUPlayer[PlayerId] == false){
-                
-                    scrCreateRingLoss();
+            if(global.CPUPlayer[PlayerId] == false){                
+                scrCreateRingLoss();
                 if(argument1 != sndPlayerSpike)
                     audio_play_sound(sndRingLoss, 1, false);
                 else

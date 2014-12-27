@@ -148,6 +148,8 @@
 
     ReturnAngle = scrWrapAngle(round(point_direction(LeftX, LeftY, RightX, RightY)));   
 
-
-   
-    return ReturnAngle;
+    if(AngleBothSensors == false || abs(angle_difference(AngleMode*90, Angle)) > 10 ||((scrPlayerCollisionASensor360(objParentTerrain, 0) || Speed >= 0) 
+    && (scrPlayerCollisionBSensor360(objParentTerrain, 0) || Speed <= 0)) || Landed == true)  
+        return ReturnAngle;
+    else
+        return Angle;

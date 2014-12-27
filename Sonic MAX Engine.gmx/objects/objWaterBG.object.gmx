@@ -85,12 +85,13 @@
     Speed         = 0.6;
     
     X            += 2;
-    
+    W             = view_wview[0]+64    
+
     repeat(Parts){
         // Update position, relative to the current scroll
-        x = view_xview[0] -(((view_xview+X)*(Speed)) mod 384);
+        x = view_xview[0] -(((view_xview[0]+X)*(Speed)) mod W);
         draw_sprite_part_ext(sprWaterBG, image_index, 0, PartHeight*i, sprite_get_width(sprWaterBG), PartHeight, x, y+((PartHeight*i)*_Scale), 1, _Scale, c_white, 1);
-        draw_sprite_part_ext(sprWaterBG, image_index, 0, PartHeight*i, sprite_get_width(sprWaterBG), PartHeight, x+384, y+((PartHeight*i)*_Scale), 1, _Scale, c_white, 1);
+        draw_sprite_part_ext(sprWaterBG, image_index, 0, PartHeight*i, sprite_get_width(sprWaterBG), PartHeight, x+W, y+((PartHeight*i)*_Scale), 1, _Scale, c_white, 1);
         i       += 1;
         Speed   += 0.08;
     }

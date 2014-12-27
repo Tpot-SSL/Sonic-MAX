@@ -3,5 +3,6 @@
         SuperForm       = true;
         SuperFormTimer  = 0;
         scrReloadAnimations(true);
+        CurrentPalette  = 1;
         Action = consActionNormal;
     }

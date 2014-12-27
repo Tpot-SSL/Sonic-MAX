@@ -15,7 +15,7 @@
     X2   = x-12*dcos(InitAngle)+4*dsin(InitAngle);
     Y2   = y+4*dcos(InitAngle)+12*dsin(InitAngle);
     Object = collision_line(X, Y, X2, Y2, argument0, true ,true)
-    if((Object != noone &&(Object.Layer == Layer || Object.Layer == -1) && Object.Platform == false))
+    if((Object != noone &&(Object.Layer == Layer || Object.Layer == -1) && Object.Platform != true))
         return true;
         
     return false;

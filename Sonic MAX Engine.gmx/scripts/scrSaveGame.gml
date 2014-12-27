@@ -2,7 +2,7 @@
 
     if(global.Save == -1)
         exit;
-    var Level = scrLoadLevel(global.Save);
+    var Level = scrLoadLevel(global.Save)-1;
     file_delete(working_directory+"\Save"+string(global.Save)+".txt")
     File = file_text_open_write(working_directory+"\Save"+string(global.Save)+".txt");
     

@@ -290,12 +290,12 @@
     randomize();
     AA      = 0;    
     VSync   = false;
-    if(display_aa &gt;= 12 &amp;&amp; show_question("Turn on Anti-Aliasing and Vsync?") == true){
+    /*if(display_aa &gt;= 12 &amp;&amp; show_question("Turn on Anti-Aliasing and Vsync?") == true){
         display_reset(8, true);
         AA      = 8;
         VSync   = true;
     }
-    
+    */
     RecordingMode = consRecordIdle;
     RecordingFile[0] = "";
     RecordingFile[1] = "";
@@ -314,7 +314,8 @@
         OS = "iOS";
     }else if(os_type == os_macosx){
         OS = "OSX";
-    }
+    }else
+        OS = "Unknown";
     if(gamepad_is_supported() == true){
         if(gamepad_is_connected(0) == true){        
             if(show_question("A Controller has been detected. Would you like to use it?") == true)
@@ -334,7 +335,7 @@
     ScreenHeight   = display_get_height()-128;
 
     if(OS != "Android" &amp;&amp; OS != "iOS"){
-            Scale = floor(min(get_integer("Enter Resolution Scale.", 1), 4));
+        Scale = floor(min(get_integer("Enter Resolution Scale.", 1), 4));
         if(Scale &lt; 1)
             Scale = 1;
         window_set_size(Resolution[0]*Scale, Resolution[1]*Scale);
@@ -511,11 +512,9 @@
         i += 1;
     }
 
-    if(scrParameters() == false){
-       // alarm[0] = 10;
+    if(scrParameters() == false &amp;&amp; OS != "Windows"){
        room_goto_next();
-    }
-       // 
+    } 
 </string>
           </argument>
         </arguments>

@@ -11,13 +11,10 @@
     // --------- Movement -------------------------
         Speed = scrClampValue(Speed, -128, 128)
         
-        if(PlayerId == 0){
-            if(Ground == true && (AngleMode != 0 || !scrPlayerCollisionASensor(TerrainId, 0) || !scrPlayerCollisionBSensor(TerrainId, 0)))
-                SplitSpeedAmount = 2;
-            else                 
-                SplitSpeedAmount = 4;
-        }else
+        if(PlayerId == 0){               
             SplitSpeedAmount = 5;
+        }else
+            SplitSpeedAmount = 6;
 
         SpeedSplit = floor(max(abs((Speed*SpeedMultiplier)/SplitSpeedAmount), 1));
             
@@ -27,23 +24,26 @@
             SpeedValue = 0;
         SpeedMax = abs(Speed)*SpeedMultiplier;
 
-        if(Ground){
-            //scrPushPlayerX();
-            scrPushPlayerY();
-        }
         i = 2;
         repeat(ceil(SpeedSplit)){
             if(Speed == 0)
                 SpeedValue = 0;
+
             SpeedValue = min(SpeedMax, abs(SpeedValue))*sign(SpeedValue);
             SpeedMax -= SpeedValue
+
             x += SpeedValue*Cos[Angle]; // - Increase x by speed and angle.
             y -= SpeedValue*Sin[Angle]; // - Increase y by speed and angle.
+
             scrPlayerHandleMonitors();
+            if(CollisionPushMode == 0){
+                scrPushPlayerX(); // - Push player out horizontally.
+                scrPushPlayerY();
+            }else{
+                scrPushPlayerSafe();
+            }
+
             scrPlayerWallCollision();
-            //if(i mod 2 == 0){
-              //  scrPushPlayerX(); // - Push player out horizontally.
-             //   scrPushPlayerY();
             //}
               
          // --------- Ground Collisions -------------
@@ -54,8 +54,7 @@
                 AngleLast2  = AngleLast; 
                 AngleLast   = Angle;         
 
-                if(AngleBothSensors == false || abs(angle_difference(AngleMode*90, Angle)) > 10 ||(scrPlayerCollisionASensor360(objParentTerrain, 0) 
-                && scrPlayerCollisionBSensor360(objParentTerrain, 0)))
+                
                     Angle = scrCheckAngle();          
 
                 if((Angle > 315 || Angle < 45) && AngleMode != 0){
@@ -125,7 +124,10 @@
                     Angle = TerrainId.Angle;
                 Gravity    = -Speed*Sin[Angle]; // - Set gravity based on current angle.
                 Speed      = Speed*Cos[Angle];  // - Set speed based on current angle.
-
+                if(Action == consActionRolling){
+                    x             += (5*Sin[Angle]);
+                    y             += (5*Cos[Angle]);
+                }
                 Angle      = 0;     // - Reset Angle.
                 AngleMode  = 0;     // - Reset Angle Mode.
                 Ground     = false; // - Reset Ground.

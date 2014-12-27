@@ -25,11 +25,12 @@
         global.ChaosEmeralds = 0;
     else
         global.ChaosEmeralds = real(base64_decode(file_text_read_string(File)));
-    
+    file_text_readln(File);
     if(file_text_eof(File) == true)
         global.Lives = 3;
     else
         global.Lives = real(base64_decode(file_text_read_string(File)));
+    file_text_readln(File);
     if(file_text_eof(File) == true)
         global.UsePeelout = true;
     else   
