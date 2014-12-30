@@ -1,5 +1,5 @@
     
-    _ObjectHandle = collision_rectangle(x-7, y-15, x+7, y+15, objRing, false, true);
+    _ObjectHandle = collision_rectangle(x-9, y-18, x+9, y+20, objRing, false, true);
     if(_ObjectHandle != noone){
         if(_ObjectHandle.Alarm <= 0){
             with(_ObjectHandle){

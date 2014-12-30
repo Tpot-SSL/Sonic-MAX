@@ -1,7 +1,7 @@
     
     
     if(instance_exists(objCheckpoint)){
-        _ObjectHandle = collision_rectangle(x-15, y-10, x+15, y+20, objCheckpoint, false, true)
+        _ObjectHandle = collision_rectangle(x-9, y-10, x+9, y+20, objCheckpoint, false, true)
         if(_ObjectHandle != noone){
             if(_ObjectHandle.Index == 0 && _ObjectHandle.AngleSpeed == 0)  {
                 audio_play_sound(sndObjectCheckpoint, 1, false);

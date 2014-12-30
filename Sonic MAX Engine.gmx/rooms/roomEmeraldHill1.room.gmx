@@ -535,8 +535,8 @@
     <instance objName="objCheckpoint" x="6336" y="656" name="inst_3E9C3AAF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCheckpoint" x="8832" y="336" name="inst_22A58A58" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objYellowSpringCorner" x="7296" y="644" name="inst_13C7628A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objYellowSpringCorner" x="7548" y="912" name="inst_DE854314" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
-    <instance objName="objYellowSpringCorner" x="10132" y="692" name="inst_A5810368" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
+    <instance objName="objYellowSpringCorner" x="7548" y="912" name="inst_DE854314" locked="0" code="&#xA;    depth = 100;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
+    <instance objName="objYellowSpringCorner" x="10132" y="692" name="inst_A5810368" locked="0" code="depth = 100;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
     <instance objName="objYellowSpringCorner" x="5720" y="516" name="inst_BC8D1A71" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
     <instance objName="objYellowSpring" x="5824" y="928" name="inst_02A1DE30" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="270"/>
     <instance objName="objYellowSpring" x="6464" y="704" name="inst_9E64C0C9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="270"/>
@@ -763,7 +763,7 @@
     <instance objName="objMovingPlatformDirection" x="1984" y="736" name="inst_50AF8517" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="90"/>
     <instance objName="objEHZTile178" x="8448" y="512" name="inst_69BFDCBC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRedSpring" x="1918" y="736" name="inst_F34EAD61" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="270"/>
-    <instance objName="objYellowSpring" x="7648" y="520" name="inst_7F20A081" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objYellowSpring" x="7648" y="520" name="inst_7F20A081" locked="0" code="depth = 100;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRing" x="7636" y="248" name="inst_385E6720" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRing" x="7660" y="248" name="inst_BD1E8025" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objRing" x="7648" y="236" name="inst_3F8ADB08" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

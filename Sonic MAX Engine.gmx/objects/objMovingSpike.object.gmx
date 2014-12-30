@@ -135,7 +135,7 @@
             <kind>1</kind>
             <string>
     if(y-ystart &lt; Height)
-        draw_sprite_part(sprite_index, 0, 0, 0, sprite_width, Height-(y-ystart), x+sprite_xoffset, y)
+        draw_sprite_part(sprite_index, 0, 0, 0, sprite_width, Height-(y-ystart), x-sprite_xoffset, y)
 </string>
           </argument>
         </arguments>

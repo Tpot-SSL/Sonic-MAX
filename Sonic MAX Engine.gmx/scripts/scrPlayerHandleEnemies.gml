@@ -1,9 +1,10 @@
     if(instance_exists(objParentEnemy) == false)
         exit;
 
-    Off = 15+(10*(Shield == consShieldInstashield))    
+    OffX = 9+(15*(Shield == consShieldInstashield))    
+    OffY = 19+(5*(Shield == consShieldInstashield))    
 
-    _ObjectHandle = collision_rectangle(x-Off, y-Off, x+Off, y+Off, objParentEnemy, false, true)
+    _ObjectHandle = collision_rectangle(x-OffX, y-OffY, x+OffX, y+OffY, objParentEnemy, false, true)
     if(_ObjectHandle != noone){
         if(Action == consActionRolling || Action == consActionJumping || Action == consActionSpindash || Action == consActionGlide
         || ShieldAction == true || Invincibility == 2 || SuperForm || Homing){
