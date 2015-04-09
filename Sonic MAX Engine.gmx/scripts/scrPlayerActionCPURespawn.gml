@@ -51,8 +51,9 @@
             break;
         default:
             Dir       = point_direction(x, y, Player1.x, Player1.y-4);
-            x        += lengthdir_x(max(min(abs(x-Player1.x)/8, 16), 4), Dir);
-            y        += lengthdir_y(5, Dir);
+            //x        += lengthdir_x(max(min(abs(x-Player1.x)/8, 16), 4), Dir);
+            x = Player1.x-20;
+            y        -= 6;
             RespawnTimer++;
            // Speed     = max(min(Speed+lengthdir_x(0.09375, Dir), 4), -4);
             //Gravity   = -5; 

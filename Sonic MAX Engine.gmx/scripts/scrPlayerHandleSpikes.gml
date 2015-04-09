@@ -7,15 +7,9 @@
 
     if(TerrainId != noone && instance_exists(TerrainId) && TerrainId.object_index == objSpike && Ground){
         if(TerrainId.image_angle == 0)
-            scrPlayerHurt(_ObjectHandle, sndPlayerSpike)
+            scrPlayerHurt(TerrainId, sndPlayerSpike)
     }
   
-  /*  _ObjectHandle = collision_rectangle(x-9, y+16, x+9, y+24, objSpike, true, true);
-    if(_ObjectHandle != noone){
-        if(_ObjectHandle.image_angle == 0 && TerrainId == _ObjectHandle)
-            scrPlayerHurt(_ObjectHandle, sndPlayerSpike);        
-    }
-*/
     _ObjectHandle = collision_rectangle(x-9, y-16, x+9, y-24, objSpike, false, true);
     if(_ObjectHandle != noone){
         if(_ObjectHandle.image_angle == 180)

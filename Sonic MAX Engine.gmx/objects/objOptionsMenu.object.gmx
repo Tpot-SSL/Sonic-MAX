@@ -31,11 +31,11 @@
     global.UseTrail        = false;
     global.UsePeelout      = true;   
 
-    global.SpeedCap        = false; 
+    global.SpeedCap        = 0; 
 
 
     VSelect = 1; 
-    Options = 4;
+    Options = 5;
 </string>
           </argument>
         </arguments>
@@ -82,10 +82,6 @@
                 global.UsePeelout = !global.UsePeelout;
                 audio_play_sound(sndSwitchBlip, 1, false);
                 break; 
-            case 5:
-                global.SpeedCap = !global.SpeedCap;
-                audio_play_sound(sndSwitchBlip, 1, false);
-                break;
         }
     }
     if(keyboard_check_pressed(vk_right) &amp;&amp; VSelect == 1){
@@ -116,6 +112,38 @@
                 break;
             case 2:
                 global.Spindash = 1;
+                audio_play_sound(sndSwitchBlip, 1, false);
+                break;
+        }
+    }
+    if(keyboard_check_pressed(vk_right) &amp;&amp; VSelect == 5){
+        switch(global.SpeedCap){
+            case 0:
+                global.SpeedCap = 1;
+                audio_play_sound(sndSwitchBlip, 1, false);
+                break;
+            case 1:
+                global.SpeedCap = 2;
+                audio_play_sound(sndSwitchBlip, 1, false);
+                break;
+            case 2:
+                global.SpeedCap = 0;
+                audio_play_sound(sndSwitchBlip, 1, false);
+                break;
+        }
+    }
+    if(keyboard_check_pressed(vk_left) &amp;&amp; VSelect == 5){
+        switch(global.SpeedCap){
+            case 0:
+                global.SpeedCap = 2;
+                audio_play_sound(sndSwitchBlip, 1, false);
+                break;
+            case 1:
+                global.SpeedCap = 0;
+                audio_play_sound(sndSwitchBlip, 1, false);
+                break;
+            case 2:
+                global.SpeedCap = 1;
                 audio_play_sound(sndSwitchBlip, 1, false);
                 break;
         }
@@ -242,25 +270,36 @@
 
     draw_text(240, 80, "TRUE");
     draw_set_colour(c_white);
-/*
+
+// ------------ SPEED CAP -----------------
+
     if(VSelect == 5)
         draw_set_colour(c_yellow);
     
-    draw_text(10, 80, "SPEED CAP");
-
+    draw_text(10, 96, "SPEED CAP");
     draw_set_colour(c_white);  
     
-    if(global.SpeedCap == false)
+    if(global.SpeedCap == 0)
         draw_set_colour(c_yellow);
 
-    draw_text(160, 80, "FALSE");
+    draw_text(140, 96, "OFF");
     draw_set_colour(c_white);
 
-    if(global.SpeedCap == true)
+    if(global.SpeedCap == 1)
         draw_set_colour(c_yellow);
 
-    draw_text(240, 80, "TRUE");
+    draw_text(210, 96, "S1");
     draw_set_colour(c_white);
+
+    
+    if(global.SpeedCap == 2)
+        draw_set_colour(c_yellow);
+
+    draw_text(280, 96, "S2");
+    draw_set_colour(c_white);
+
+    
+
 </string>
           </argument>
         </arguments>

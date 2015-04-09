@@ -426,7 +426,7 @@
     <instance objName="objMonitor" x="4864" y="816" name="inst_4C70E61F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objMonitor" x="4896" y="816" name="inst_2F1EB2FF" locked="0" code="&#xA;    Icon = consMonitorInvincibility;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEnemyMotobug" x="5200" y="772" name="inst_5A66873E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objMonitor" x="5504" y="496" name="inst_A0186308" locked="0" code="    &#xA;    Icon = consMonitorShield;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objMonitor" x="5504" y="496" name="inst_A0186308" locked="0" code="Icon = consMonitorShield;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objGHZCollapse" x="4304" y="640" name="inst_32393DF6" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objYellowSpring" x="3612" y="640" name="inst_CE524883" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objYellowSpring" x="3488" y="900" name="inst_1162E25C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

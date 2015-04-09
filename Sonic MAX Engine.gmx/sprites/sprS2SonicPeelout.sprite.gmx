@@ -2,7 +2,7 @@
 <sprite>
   <type>0</type>
   <xorig>21</xorig>
-  <yorigin>20</yorigin>
+  <yorigin>21</yorigin>
   <colkind>1</colkind>
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
@@ -35,5 +35,6 @@
     <frame index="12">images\sprS2SonicPeelout_12.png</frame>
     <frame index="13">images\sprS2SonicPeelout_13.png</frame>
     <frame index="14">images\sprS2SonicPeelout_14.png</frame>
+    <frame index="15">images\sprS2SonicPeelout_15.png</frame>
   </frames>
 </sprite>

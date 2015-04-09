@@ -84,7 +84,7 @@
                         AngleMode = 2;
                     }else if((Angle > 225 && Angle < 315))
                         AngleMode = 3;
-                   
+                    
                     if(abs(Speed) <= abs(Gravity) && Angle >= 22.5 && Angle <= 337.5 && TerrainId.object_index != objObjectSeesaw){
                         Speed   = -Gravity*sign(global.Sin[Angle]);
                         if(Angle < 45 || Angle > 315) 

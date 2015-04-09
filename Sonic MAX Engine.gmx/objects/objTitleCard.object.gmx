@@ -115,7 +115,7 @@
             instance_activate_all();
         } 
 
-    if(Part &lt; 2){
+    if(floor(Part) == 1){
         if(BlueY &lt; view_hview[0])
             BlueY += 12;
         
@@ -136,18 +136,18 @@
                 instance_activate_all();
             }
         }      
-    }else if(Part &gt;= 2 &amp;&amp; Part &lt; 3){
+    }else if(floor(Part) == 2){
         if(RedX &gt; -2)
             RedX = max(RedX-8, -2);   
         if(RedX &lt; 110 &amp;&amp; YellowX &gt; -2)
             YellowX = max(YellowX-16, -2);     
         if(YellowX &lt; (view_wview[0]/2) &amp;&amp; BlueY &gt;= -2)
             BlueY = max(BlueY-12, -2);  
-        if(BlueY &gt;= -2){
+        if(BlueY &lt;= -2){
             Part += 0.02;
         }
         
-    }else if(Part &gt;= 3){
+    }else if(floor(Part) == 3){
         Text1X  += 16;
         Text2X  -= 16;
         if(Text2X &lt; -100){
@@ -176,8 +176,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-
+            <string>/*
     if(surface_exists(HUD))    
         draw_surface_stretched(HUD, 0, 0, display_get_gui_width(), display_get_gui_height());
     else
@@ -206,35 +205,38 @@
             <kind>1</kind>
             <string>
 
-    surface_set_target(HUD);
-    draw_clear_alpha(c_white, 0);
+  //  surface_set_target(HUD);
+   // draw_clear_alpha(c_white, 0);
     if(Part == 1){    
         draw_set_colour(c_black);
-        draw_rectangle(0, 0, view_wview[0], view_hview[0], false);
+        draw_rectangle(view_xview[0], view_yview[0], view_xview[0]+view_wview[0], view_yview[0]+view_hview[0], false);
     }
     draw_set_colour(c_blue);
-    draw_rectangle(0, 0, view_wview[0], BlueY, false);
+    draw_rectangle(view_xview[0], view_yview[0], view_xview[0]+view_wview[0], view_yview[0]+BlueY, false);
     
     draw_set_colour(c_yellow);
-    draw_rectangle(view_wview[0]-YellowX, view_hview[0]-64, view_wview[0], view_hview[0], false);
+    draw_rectangle(view_xview[0]+view_wview[0]-YellowX, view_yview[0]+view_hview[0]-64, view_xview[0]+view_wview[0], view_yview[0]+view_hview[0], false);
     
     draw_set_colour(c_white);
     
-    draw_sprite(sprTitleCardSonic, 0, (view_wview[0]-YellowX)+168, view_hview[0]-56)
+    draw_sprite(sprTitleCardSonic, 0, (view_xview[0]+view_wview[0]-YellowX)+168, view_yview[0]+view_hview[0]-56)
     
     i = 0;
     repeat(ceil(view_hview[0]/80)){
-        draw_sprite(sprTitleCardRed, 0, RedX, i);
+        draw_sprite(sprTitleCardRed, 0, view_xview[0]+RedX, view_yview[0]+i);
         i += 80;
     }
     
     draw_set_font(global.FontTitle);
     draw_set_halign(fa_right);
-    draw_text(Text1X, 64, ZoneName);
-    draw_text(Text2X, 88, "ZONE");
-    draw_sprite(sprFontAct, Act-1, Text2X+1,88);
+    draw_text(view_xview[0]+Text1X, view_yview[0]+64, ZoneName);
+    draw_text(view_xview[0]+Text2X, view_yview[0]+88, "ZONE");
+    draw_sprite(sprFontAct, Act-1, view_xview[0]+Text2X+1, view_yview[0]+88);
     draw_set_halign(fa_left);
-    surface_reset_target();
+   // surface_reset_target();
+    
+    
+
 </string>
           </argument>
         </arguments>

@@ -64,16 +64,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>    if(collision_rectangle(bbox_left+1, y+4, bbox_right-1, bbox_bottom+1, objParentTerrain, true, true) == noone){
-        Gravity += 0.2; 
-        Ground = false;
-        y += Gravity;   
-        //mask_index = sprMaskNull
+            <string>    if(place_meeting(x, y+1, objParentTerrain) == false){//(collision_rectangle(bbox_left, y+4, bbox_right, bbox_bottom+1, objParentTerrain, true, true) == noone){
+        Gravity    += 0.2; 
+        Ground      = false;
+        y          += Gravity;   
     }else{
-        Gravity = 0;
-        Ground = true;
-       // mask_index = sprite_index;
-        while(collision_rectangle(bbox_left+1, y, bbox_right-1, bbox_bottom, objParentTerrain, true, true)){
+        Gravity   = 0;
+        Ground    = true;
+        while(place_meeting(x, y, objParentTerrain)){
             y -= 1;  
         }
     }

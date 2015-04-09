@@ -6,5 +6,6 @@
         &&(Ground || Action = consActionCorkscrew)&& abs(Speed) >= 6 &&(Angle >= 340 || Angle <= 20)){
             Action            = consActionCorkscrew;
             CorkscrewHandle   = _ObjectHandle;
+            image_xscale      = sign(Speed);
         }
     }

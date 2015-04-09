@@ -12,10 +12,9 @@
     
     if((Object != noone &&(Object.Layer == Layer || Object.Layer == -1) && Object.Platform == false))
         return true;
-    else{
-    
+    else{    
         Object = collision_rectangle(x-2, y-2, x+2, y+2, objParentTerrain, true, true);
-        if((Object != noone &&(Object.Layer == Layer || Object.Layer == -1) && Object.Platform == false) && TerrainId.object_index == objMovingSolid)
+        if((Object != noone && TerrainId != noone &&(Object.Layer == Layer || Object.Layer == -1) && Object.Platform == false) && TerrainId.object_index == objMovingSolid)
             return true;
     }
         

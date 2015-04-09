@@ -4,7 +4,7 @@
     
     _ObjectHandle = collision_rectangle(x-11+Speed, y-16-(8*(Gravity < 0)), x+11+Speed, y+20, objMonitor, false, true);
     if(_ObjectHandle != noone){
-        if((Action == consActionRolling) || (Action == consActionJumping && Gravity > 0)){
+        if((Action == consActionRolling || Action == consActionGlide) || (Action == consActionJumping && Gravity > 0)){
             if(KeyA || JumpVariable == false)
                 Gravity *= -1;
             else

@@ -69,24 +69,17 @@
     if(Frame != -1 &amp;&amp; global.Frame &gt; Frame+60){
         audio_play_sound(sndSpikeMove, 1, false);
         if(y == ystart){
-            //sprite_index    = sprMaskNull;
-            //mask_index      = sprMaskNull;
-            //Platform        = true;
             Move            = 1;
             Frame           = global.Frame;
             exit;
-        }
-        else if(y == ystart+32){
-            //sprite_index    = sprS2SpikeTrap;
-            //mask_index      = sprS2SpikeTrap;
-            Move            = -1;
-              
+        }else if(y == ystart+32){
+            Move            = -1;              
             Frame           = global.Frame;
         }
     }
 
     if(Frame == -1 &amp;&amp; distance_to_point(view_xview[0]+(view_wview[0]/2), view_yview[0]+(view_hview[0]/2)) &lt; 320)
-        Frame  = global.Frame; 
+        Frame = global.Frame; 
 
     if(Frame != -1 &amp;&amp; distance_to_point(view_xview[0]+(view_wview[0]/2), view_yview[0]+(view_hview[0]/2)) &gt;= 320)
         Frame = -1;
@@ -94,15 +87,15 @@
     if(Move != 0){
         y += Move*8;
         if(y == ystart || y == ystart+32){
-            Move = 0;
-            i               = 0;
+            Move    = 0;
+            i       = 0;
             repeat(instance_number(objPlayer)){
                 Player = global.Player[i];
                 while(place_meeting(x, y, objPlayer)){
                     Player.y -= 1;
                     if(Player.Action != consActionHurt &amp;&amp; Player.Action != consActionDead)
-                        with(Player)
-                            scrPlayerHurt(other.id, sndPlayerSpike);
+                        with(Player)  
+                            scrPlayerHurt(other.id, sndPlayerSpike);                   
                 }
                     
                 i++;

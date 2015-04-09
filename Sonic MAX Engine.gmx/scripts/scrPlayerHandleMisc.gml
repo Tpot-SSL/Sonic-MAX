@@ -8,8 +8,6 @@
          //   Angle360Detection = true;
             ForceRoll    = true;
         }else if((abs(angle_difference(_ObjectHandle.image_angle, point_direction(xprevious, yprevious, x, y))) > 135 || Speed == 0) && ForceRoll == true){
-            //Action       = consActionNormal;
-            //Angle360Detection = false;
             ForceRoll    = false;
         }                                       
     }

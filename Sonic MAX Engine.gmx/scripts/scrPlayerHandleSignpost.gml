@@ -2,7 +2,7 @@
     if(instance_exists(objSignpost) == false)
         exit;
         
-    if(x >= objSignpost.x && objSignpost.Spin == false){
+    if(PlayerId == 0 && x >= objSignpost.x && objSignpost.Spin == false){
         audio_play_sound(sndSignpost, 1, false);
         objSignpost.Spin    = true;
         if(global.Haptic == true && objGlobal.OS == "Android"){

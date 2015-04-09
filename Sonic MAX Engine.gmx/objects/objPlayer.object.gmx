@@ -207,6 +207,8 @@
 
         FlagRollSpeedCap        = true;                  // - If set to true speed is capped at 16 when rolling.
 
+        FlagSpeedCap            = global.SpeedCap;       // - 0 - none, 1 - Sonic 1, 2 - Sonic 2/CD,
+
         CameraLag               = true;
 
         AngleSensorHeight       = 90;                    // - Maximum distance the angle checking sensors can move.
@@ -591,7 +593,7 @@
                 image_xscale = 1;
         }
         
-        if(scrPlayerCollisionBSensor(objParentTerrain, 0) == false &amp;&amp; Ground == true){
+        if(TerrainId != noone &amp;&amp; scrPlayerCollisionBSensor(objParentTerrain, 0) == false &amp;&amp; Ground == true){
             if(AngleMode == 0)
                 RightEdge = TerrainId.bbox_right-(x-10);
             else if(AngleMode == 1)
@@ -603,7 +605,7 @@
         }else{
             RightEdge = 30;
         }
-        if(scrPlayerCollisionASensor(objParentTerrain, 0) == false &amp;&amp; Ground == true){
+        if(TerrainId != noone &amp;&amp; scrPlayerCollisionASensor(objParentTerrain, 0) == false &amp;&amp; Ground == true){
             if(AngleMode == 0)
                 LeftEdge = abs(TerrainId.bbox_left-(x+10));
             else if(AngleMode == 1)
@@ -618,10 +620,7 @@
             
         if(Cutscene == false || AllowAnim == true)       
             scrAnimationsHandle();
-        
-       // AnimationX = floor(x);        
-       // AnimationY = floor(y);
-        //if(abs(Sin[Angle]) &gt;= 0.1 &amp;&amp; abs(Sin[Angle]) &lt;= 0.9){
+
         _Cos = abs(Cos[Angle]);
         if(_Cos &gt; 0.5)
             _Cos = 1-_Cos;
@@ -630,7 +629,7 @@
             _Sin = 1-_Sin;
         AnimationX = round(x+_Cos*4);
         AnimationY = round(y+_Sin*4);
-       // }
+
         switch(Animation){  
             case "Rolling":
                 AnimationAngle = 0;
@@ -1358,6 +1357,11 @@
         instance_deactivate_object(objParentLayer1);
     else if(Layer == 1)
         instance_deactivate_object(objParentLayer0);
+        
+    if(PlayerId &gt; 0){
+        with(objMonitor)
+            Platform = false;
+    }
        
     // -- Handle Slope Factor(Acceleration and Deceleration on slopes) --
     if(Ground == true &amp;&amp; Action != consActionRolling &amp;&amp; Action != consActionPipe &amp;&amp; Action != consActionCrouchDown &amp;&amp; Action != consActionSpindash
@@ -1403,6 +1407,8 @@
         }
     }
         
+    
+    
     if(FlagsAllowXMovement == true){
         scrPlayerHandleBreakableTerrain();
         scrPlayerWallCollision();
@@ -1644,7 +1650,7 @@
             <string>///Misc
 
     
-    if(y &gt;= room_height ||(global.GameTime &gt;= 599000 &amp;&amp; DebugMode == false)){
+    if((y &gt;= room_height &amp;&amp; Action != consActionCPURespawn)||(global.GameTime &gt;= 599000 &amp;&amp; DebugMode == false)){
         scrPlayerDead(sndPlayerDead);
     }
     
@@ -1674,6 +1680,11 @@
         instance_activate_object(objParentLayer1);
     else if(Layer == 1)
         instance_activate_object(objParentLayer0);
+        
+    if(PlayerId &gt; 0){
+        with(objMonitor)
+            Platform = 2;
+    }
 </string>
           </argument>
         </arguments>
@@ -1802,6 +1813,44 @@
     if(KeyCPressed &amp;&amp; DebugMode){
         Action         = consActionDebug;
         image_xscale   = 1;
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Speed Caps
+
+    if(FlagSpeedCap == 1){
+        if(Action != consActionRolling &amp;&amp; (Action != consActionJumping || JumpVariable &gt; 0) &amp;&amp; InputAlarm &lt;= 0){
+            if(KeyRight)
+                Speed = min(Speed, TopSpeed);
+            if(KeyLeft)
+                Speed = max(Speed, -TopSpeed);
+        }
+    }else if(FlagSpeedCap == 2){
+        if(Ground == false &amp;&amp; (Action != consActionJumping || JumpVariable &gt; 0) &amp;&amp; InputAlarm &lt;= 0){
+        
+            if(KeyRight)
+                Speed = min(Speed, TopSpeed);
+            if(KeyLeft)
+                Speed = max(Speed, -TopSpeed);
+        }
     }
 </string>
           </argument>

@@ -131,8 +131,8 @@
           <sprite>sprites\sprS2SonicOuttaHere</sprite>
         </sprites>
         <sprites name="Tails">
-          <sprite>sprites\sprS2TailsBalance</sprite>
           <sprite>sprites\sprS2TailsIdle</sprite>
+          <sprite>sprites\sprS2TailsBalance</sprite>
           <sprite>sprites\sprS2TailsRolling</sprite>
           <sprite>sprites\sprS2TailsRun</sprite>
           <sprite>sprites\sprS2TailsSpring</sprite>

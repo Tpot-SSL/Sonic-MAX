@@ -17,7 +17,7 @@
     <TextureGroup0>0</TextureGroup0>
   </TextureGroups>
   <For3D>0</For3D>
-  <width>29</width>
+  <width>28</width>
   <height>38</height>
   <frames>
     <frame index="0">images\sprS2SonicIdleWait0_0.png</frame>

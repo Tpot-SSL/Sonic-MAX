@@ -1,13 +1,13 @@
 
     _ObjectHandle = collision_line(x, y+4, x+(14*image_xscale), y+4, objPushableTerrain, true, true);
     if((image_xscale == 1 &&(KeyRight == false || scrPlayerCollisionRightSensor(objParentTerrain) == false)) 
-|| (image_xscale == -1 &&(KeyLeft == false || scrPlayerCollisionLeftSensor(objParentTerrain) == false)) || Ground == false){
+    || (image_xscale == -1 &&(KeyLeft == false || scrPlayerCollisionLeftSensor(objParentTerrain) == false)) || Ground == false){
         audio_stop_sound(sndPush1);
         Action = consActionNormal;
     }else if(KeyAPressed && Ground == true){
         audio_stop_sound(sndPush1);
         scrPlayerJump();
-    }else if(_ObjectHandle != noone && PlayerId == 0){
+    }else if(_ObjectHandle != noone && PlayerId == 0 && _ObjectHandle.Ground == true){
         with(_ObjectHandle){
             if(other.image_xscale == 1 && collision_point(bbox_right, other.y+4, objParentTerrain, true, true) == noone && Ground == true){
                 if(audio_is_playing(sndPush1) == false)
