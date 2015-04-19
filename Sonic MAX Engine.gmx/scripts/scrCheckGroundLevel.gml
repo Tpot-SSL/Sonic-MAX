@@ -66,17 +66,23 @@
             TerrainRight = noone;
         }
     }
- 
+    
+    if(TerrainLeft != noone && instance_exists(TerrainLeft) == false)
+        TerrainLeft = noone;    
+    if(TerrainRight != noone && instance_exists(TerrainRight) == false)
+        TerrainRight = noone;
+        
     TerrainMiddle   = noone;
     repeat(GroundSensorHeight){
         TerrainMiddle = collision_point(MiddleX2, MiddleY2, objParentTerrain, true, true)
         if(TerrainMiddle != noone && instance_exists(TerrainMiddle) == false)
             TerrainMiddle = noone;
+            
         if(TerrainMiddle != noone){
             TerrainMiddle2 = collision_point(MiddleX2-(Sin[InitAngle]), MiddleY2-(Cos[InitAngle]), TerrainMiddle, true, true)
             if(TerrainMiddle2 != noone && instance_exists(TerrainMiddle2)){
                 if((TerrainMiddle2.Layer == Layer || TerrainMiddle2.Layer == -1) &&(TerrainMiddle2.Platform == false 
-                ||(TerrainMiddle2.Platform == true && AngleMode == 0) || (Object.Platform == 2  && Action != ActionJumping))){
+                ||(TerrainMiddle2.Platform == true && AngleMode == 0) || (TerrainMiddle2.Platform == 2  && Action != ActionJumping))){
                     TerrainMiddle = noone;
                     MiddleX2 = x+20*Sin[InitAngle];
                     MiddleY2 = y+20*Cos[InitAngle];   

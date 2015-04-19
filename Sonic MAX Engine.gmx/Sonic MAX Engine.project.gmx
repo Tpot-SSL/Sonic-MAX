@@ -1091,6 +1091,16 @@
           <object>objects\objObjectSpikeball</object>
         </objects>
         <objects name="Monitors">
+          <objects name="Presets">
+            <object>objects\objMonitorEggman</object>
+            <object>objects\objMonitorLife</object>
+            <object>objects\objMonitorSpeedSneakers</object>
+            <object>objects\objMonitorInvincibility</object>
+            <object>objects\objMonitorShield</object>
+            <object>objects\objMonitorShieldFire</object>
+            <object>objects\objMonitorShieldBubble</object>
+            <object>objects\objMonitorShieldThunder</object>
+          </objects>
           <object>objects\objMonitor</object>
           <object>objects\objMonitorIcon</object>
           <object>objects\objMonitorBroken</object>
@@ -1120,13 +1130,24 @@
           <object>objects\objWaterBG</object>
         </objects>
         <objects name="Gimmicks">
+          <objects name="Presets">
+            <object>objects\objBridge</object>
+            <object>objects\objBridge8</object>
+            <object>objects\objBridge10</object>
+            <object>objects\objBridge16</object>
+          </objects>
           <object>objects\objBridgeNode</object>
-          <object>objects\objBridge</object>
-          <object>objects\objBridge16</object>
-          <object>objects\objBridge10</object>
-          <object>objects\objBridge8</object>
         </objects>
         <objects name="Chaos_Emeralds">
+          <objects name="Presets">
+            <object>objects\objChaosEmerald_1</object>
+            <object>objects\objChaosEmerald_2</object>
+            <object>objects\objChaosEmerald_3</object>
+            <object>objects\objChaosEmerald_4</object>
+            <object>objects\objChaosEmerald_5</object>
+            <object>objects\objChaosEmerald_6</object>
+            <object>objects\objChaosEmerald_7</object>
+          </objects>
           <object>objects\objChaosEmerald</object>
         </objects>
         <objects name="Corkscrew">

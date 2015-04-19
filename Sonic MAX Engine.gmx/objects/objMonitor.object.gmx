@@ -40,10 +40,10 @@
           <argument>
             <kind>1</kind>
             <string>
-    image_speed = 0.2;
-    Icon    = consMonitorRing;
-    Gravity = 0;
-    Bump = false;
+    image_speed   = 0.2;
+    Icon          = consMonitorRing;
+    Gravity       = 0;
+    Bump          = false;
    
 </string>
           </argument>
