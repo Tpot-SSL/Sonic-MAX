@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>
     Speed = 0;
-    instance_destroy();
+    
 </string>
           </argument>
         </arguments>

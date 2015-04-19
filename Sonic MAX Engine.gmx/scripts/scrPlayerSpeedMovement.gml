@@ -39,12 +39,12 @@
             if(CollisionPushMode == 0){
                 scrPushPlayerX(); // - Push player out horizontally.
                 scrPushPlayerY();
-            }else{
+            }else
                 scrPushPlayerSafe();
-            }
+            
 
             scrPlayerWallCollision();
-            //}
+            
               
          // --------- Ground Collisions -------------
             if(Ground == true){
@@ -54,12 +54,12 @@
                 AngleLast2  = AngleLast; 
                 AngleLast   = Angle;         
 
-                
-                    Angle = scrCheckAngle();          
+                Angle = scrCheckAngle();          
 
                 if((Angle > 315 || Angle < 45) && AngleMode != 0){
-                    AngleModeLast = AngleMode;
-                    AngleMode = 0;    
+                    AngleModeLast  = AngleMode;
+                    AngleMode      = 0;    
+                    
                     if(Angle360Detection == false && AngleModeLast != 0 && (!scrPlayerCollisionASensor(objParentTerrain, 0) 
                     || !scrPlayerCollisionBSensor(objParentTerrain, 0)))
                         AngleMode = AngleModeLast;            
@@ -124,7 +124,7 @@
                     Angle = TerrainId.Angle;
                 Gravity    = -Speed*Sin[Angle]; // - Set gravity based on current angle.
                 Speed      = Speed*Cos[Angle];  // - Set speed based on current angle.
-                if(Action == consActionRolling){
+                if(Action == ActionRolling){
                     x             += (5*Sin[Angle]);
                     y             += (5*Cos[Angle]);
                 }

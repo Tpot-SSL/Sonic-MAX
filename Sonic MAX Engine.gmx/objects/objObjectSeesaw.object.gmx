@@ -86,7 +86,7 @@
                     RightObject.Gravity = Height/max((bbox_right-(RightObject.x))/16, 1); 
                     RightObject.Speed   = 0; 
                     RightObject.Ground  = false; 
-                    RightObject.Action  = consActionSpring;
+                    RightObject.Action  = ActionSpring;
                     RightObject         = noone;  
                     
                     audio_play_sound(sndObjectSpring, 1, false);                  
@@ -105,7 +105,7 @@
                     LeftObject.Gravity = Height/max(((LeftObject.x)-bbox_left)/16, 1); 
                     LeftObject.Speed   = 0; 
                     LeftObject.Ground  = false; 
-                    LeftObject.Action  = consActionSpring;
+                    LeftObject.Action  = ActionSpring;
                     LeftObject         = noone; 
 
                     audio_play_sound(sndObjectSpring, 1, false);                    

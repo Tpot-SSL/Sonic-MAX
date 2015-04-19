@@ -3,7 +3,7 @@
     if(_ObjectHandle != noone){
         if(abs(angle_difference(_ObjectHandle.image_angle, point_direction(xprevious, yprevious, x, y))) < 45 && ForceRoll == false && Speed != 0){
             scrPlayerResetTrail();            
-            Action       = consActionRolling;
+            Action       = ActionRolling;
             audio_play_sound(sndPlayerRoll, 1, false);
          //   Angle360Detection = true;
             ForceRoll    = true;
@@ -19,7 +19,7 @@
             Dist                  = point_distance(x, other.y, x, y);
             other.Gravity         = -(5-(3.5*(Dist/Length)));
             other.Ground          = false;
-            other.Action          = consActionSpring;
+            other.Action          = ActionSpring;
             other.Animation       = "Corkscrew";
             other.Fan             = true;
         }else if(Dir == consLeft && other.x > x-Length && other.x < x+Length2
@@ -44,8 +44,8 @@
                     Speed = min(abs(Speed), _ObjectHandle.MaxSpeed)*sign(Speed);
                 }
             }
-            Action = consActionSlide;
-        }else if(Action == consActionSlide && _ObjectHandle == noone)
-            Action = consActionNormal;
-    }else if(Action == consActionSlide)
-            Action = consActionNormal;
+            Action = ActionSlide;
+        }else if(Action == ActionSlide && _ObjectHandle == noone)
+            Action = ActionNormal;
+    }else if(Action == ActionSlide)
+            Action = ActionNormal;

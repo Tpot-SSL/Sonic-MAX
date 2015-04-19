@@ -23,7 +23,7 @@
         Object = collision_point(X2, Y2, argument0, true, true);
     
         if(Object != noone &&(Object.Layer == Layer || Object.Layer == -1) &&(Object.Platform == false 
-        ||(Object.Platform == true  && AngleMode == 0)|| (Object.Platform == 2  && Action != consActionJumping))){
+        ||(Object.Platform == true  && AngleMode == 0)|| (Object.Platform == 2  && Action != ActionJumping))){
             return true;
             break;
         }else{

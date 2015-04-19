@@ -2,14 +2,12 @@
         
         scrPlayerResetTrail();
 
-       // Angle = ceil(Angle/1.40625)*1.40625;
-
         GSpeed          = Speed;
         Speed           = (global.Cos[Angle]*GSpeed)+(global.Sin[Angle]*(JumpHeight+(0.5*(CharacterId == consCharacterKnuckles))));
         Gravity         = -(global.Sin[Angle]*GSpeed)+(global.Cos[Angle]*(JumpHeight+(0.5*(CharacterId == consCharacterKnuckles))));
         Ground          = false;
         JumpVariable    = true;
-        Action          = consActionJumping;
+        Action          = ActionJumping;
         
         audio_play_sound(sndPlayerJump, 1, false);
         

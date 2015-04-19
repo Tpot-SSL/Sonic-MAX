@@ -33,7 +33,7 @@
     Gravity        = -1;
     ModifyGravity  = false;
 
-    Action         = consActionNone;   
+    Action         = -1;   
 
     Script         = -1;
     Animation      = "";

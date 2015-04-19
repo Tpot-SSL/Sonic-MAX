@@ -1,11 +1,11 @@
     
-    if(Action == consActionHurt || Action == consActionDead || Invincibility > 0 || SuperForm || Action == consActionTransform)  
+    if(Action == ActionHurt || Action == ActionDead || Invincibility > 0 || SuperForm || Action == ActionTransform)  
         exit;
     var Object;
     Object = argument0;
     if(Shield <= 0){    
         if(global.Rings > 0){
-            Action      = consActionHurt;
+            Action      = ActionHurt;
             if(scrPlayerCollisionCSensor(objParentTerrain, 6) == false && scrPlayerCollisionDSensor(objParentTerrain, 6) == false)
                 Gravity     = -4;
             else
@@ -24,7 +24,7 @@
         }
     }else{
         Shield      = 0;
-        Action      = consActionHurt;
+        Action      = ActionHurt;
         if(argument1 != sndPlayerSpike)
             audio_play_sound(sndPlayerDead, 1, false);
         else

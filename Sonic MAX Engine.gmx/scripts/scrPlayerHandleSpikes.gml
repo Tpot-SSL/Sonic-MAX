@@ -1,7 +1,7 @@
 
 
   // --------
-    if(Action == consActionHurt || Invincibility > 0 || instance_exists(objSpike) == false)
+    if(Action == ActionHurt || Invincibility > 0 || instance_exists(objSpike) == false)
         exit;
 
 

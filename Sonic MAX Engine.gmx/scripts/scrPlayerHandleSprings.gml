@@ -14,7 +14,7 @@
                     if(global.Haptic == true && objGlobal.OS == "Android"){
                         immersion_play_effect(42);
                     }
-                    Action    = consActionSpring;
+                    Action    = ActionSpring;
                     _ObjectHandle.image_speed = 0.2;
                     audio_play_sound(sndObjectSpring, 1, false);
                 }else if(_ObjectHandle.image_angle == 90 && scrPlayerCollisionRightSensor(_ObjectHandle) && Speed >= 0){
@@ -34,7 +34,7 @@
                     if(global.Haptic == true && objGlobal.OS == "Android"){
                         immersion_play_effect(42);
                     }
-                    Action    = consActionSpring;
+                    Action    = ActionSpring;
                     _ObjectHandle.image_speed = 0.2;
                     audio_play_sound(sndObjectSpring, 1, false);
                 }else if(_ObjectHandle.image_angle == 270 && scrPlayerCollisionLeftSensor(_ObjectHandle) && Speed <= 0){     
@@ -57,7 +57,7 @@
                     if(global.Haptic == true && objGlobal.OS == "Android"){
                         immersion_play_effect(42);
                     }
-                    Action    = consActionSpring;
+                    Action    = ActionSpring;
                     image_xscale = 1;
                     _ObjectHandle.image_speed = 0.2;
                     Animation = "Corkscrew";
@@ -72,7 +72,7 @@
                     }
                     Angle     = 0;
                     AngleMode = 0;
-                    Action    = consActionSpring;
+                    Action    = ActionSpring;
                     image_xscale = -1;
                     _ObjectHandle.image_speed = 0.2;
                     Animation = "Corkscrew";
@@ -88,7 +88,7 @@
                     _ObjectHandle.image_speed = 0.2;
                     Angle     = 0;
                     AngleMode = 0;
-                    Action    = consActionSpring;
+                    Action    = ActionSpring;
                     image_xscale = -1;
                     Animation = "Corkscrew";
                     audio_play_sound(sndObjectSpring, 1, false);
@@ -103,7 +103,7 @@
                     _ObjectHandle.image_speed = 0.2;
                     Angle     = 0;
                     AngleMode = 0;
-                    Action    = consActionSpring;
+                    Action    = ActionSpring;
                     image_xscale = 1;
                     Animation = "Corkscrew";
                     audio_play_sound(sndObjectSpring, 1, false);

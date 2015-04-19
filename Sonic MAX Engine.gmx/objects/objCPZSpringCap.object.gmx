@@ -74,7 +74,7 @@ Corner = false;
     repeat(instance_number(objPlayer)){
         Player = collision_rectangle(x, y+8, x+32, y+48, global.Player[i], true, true);
         if(Player != noone){
-            if(Player.Action == consActionPipe &amp;&amp; image_index &gt; 0){
+            if(Player.Action == ActionPipe &amp;&amp; image_index &gt; 0){
                 image_speed = -0.5;
                 mask_index  = sprMaskNull
             }

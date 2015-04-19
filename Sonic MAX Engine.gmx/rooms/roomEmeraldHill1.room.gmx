@@ -276,7 +276,7 @@
     <instance objName="objEHZTile74" x="7936" y="896" name="inst_73C8DD97" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEHZTile246" x="8576" y="896" name="inst_6284C165" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEHZTile246" x="8448" y="896" name="inst_D5FF73DD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objBridge10" x="6000" y="1100" name="inst_5C6DCB72" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBridge10" x="5952" y="704" name="inst_5C6DCB72" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEHZTile10" x="8704" y="896" name="inst_AE9FEED7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEHZTile15" x="11136" y="896" name="inst_C40D203D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objEHZTile15" x="11008" y="896" name="inst_8905059A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

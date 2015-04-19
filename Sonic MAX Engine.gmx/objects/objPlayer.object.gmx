@@ -138,7 +138,7 @@
         RightEdge               = 30;
         Layer                   = 0;
 
-        Action                  = consActionNormal;
+        Action                  = ActionNormal;
         Homing                  = false;
         HomingIns               = noone;
         
@@ -254,6 +254,8 @@
             Delay = false;
 
         RespawnTimer            = 0;
+        
+        AirDash                 = false;
        
     // ---- Animation data --------------------------------------------------------------------
         AnimationX              = x;
@@ -569,7 +571,7 @@
           <argument>
             <kind>1</kind>
             <string>
-    if(Action != consActionDebug){             
+    if(Action != ActionDebug){             
         if(Layer == 0)
             instance_activate_object(objParentLayer1);
         else if(Layer == 1)
@@ -580,11 +582,11 @@
             TerrainId = noone;
     
        
-        if((Speed &lt;= 0 || Ground == false)&amp;&amp; KeyLeft &amp;&amp; InputAlarm &lt;= 0 &amp;&amp;(Action == consActionNormal || Action == consActionSpring || Action == consActionFly 
-        || Action == consActionJumping || Action == consActionQuicksand))
+        if((Speed &lt;= 0 || Ground == false)&amp;&amp; KeyLeft &amp;&amp; InputAlarm &lt;= 0 &amp;&amp;(Action == ActionNormal || Action == ActionSpring || Action == ActionFly 
+        || Action == ActionJumping || Action == ActionQuicksand))
             image_xscale = -1;
-        if((Speed &gt;= 0 || Ground == false) &amp;&amp; KeyRight &amp;&amp; InputAlarm &lt;= 0 &amp;&amp;(Action == consActionNormal || Action == consActionSpring || Action == consActionFly 
-        || Action == consActionJumping || Action == consActionQuicksand))
+        if((Speed &gt;= 0 || Ground == false) &amp;&amp; KeyRight &amp;&amp; InputAlarm &lt;= 0 &amp;&amp;(Action == ActionNormal || Action == ActionSpring || Action == ActionFly 
+        || Action == ActionJumping || Action == ActionQuicksand))
             image_xscale = 1;
         if(CharacterId == consCharacterKnuckles){
             if(LeftEdge &lt; 10 &amp;&amp;(Animation == "Balance" || Animation == "Balance2" || Animation == "Balance3"))
@@ -633,7 +635,7 @@
         switch(Animation){  
             case "Rolling":
                 AnimationAngle = 0;
-                if(Action != consActionPipe){
+                if(Action != ActionPipe){
                     AnimationX  += (5*Sin[Angle]);
                     AnimationY  += (5*Cos[Angle]);
                 }
@@ -648,7 +650,7 @@
                 break;
             case "Spindash":
                 AnimationAngle = 0;
-                if(Action != consActionPipe){
+                if(Action != ActionPipe){
                     AnimationX  = floor(x)+(7*Sin[Angle]);
                     AnimationY  = floor(y)+(7*Cos[Angle]);
                 }
@@ -707,15 +709,15 @@
         }
         AnimationLength   = ds_grid_get(Animations, consAnimationsTime, AnimationValue);  
         sprite_index    = ds_grid_get(Animations, consAnimationsSprite, AnimationValue);
-        if((Animation != "Running" &amp;&amp; Animation != "Fly" &amp;&amp; Animation != "Walking" &amp;&amp; (Action != consActionCorkscrew) &amp;&amp;((Action != consActionRolling &amp;&amp;(Action != consActionJumping)) || CharacterId == consCharacterTails)&amp;&amp; Animation != "Corkscrew")||(Action == consActionSpring &amp;&amp; Animation == "Walking"))
+        if((Animation != "Running" &amp;&amp; Animation != "Fly" &amp;&amp; Animation != "Walking" &amp;&amp; (Action != ActionCorkscrew) &amp;&amp;((Action != ActionRolling &amp;&amp;(Action != ActionJumping)) || CharacterId == consCharacterTails)&amp;&amp; Animation != "Corkscrew")||(Action == ActionSpring &amp;&amp; Animation == "Walking"))
             image_index     += ds_grid_get(Animations, consAnimationsSpeed, AnimationValue);
-        else if(Action == consActionSpring &amp;&amp; Animation == "Corkscrew")
+        else if(Action == ActionSpring &amp;&amp; Animation == "Corkscrew")
             image_index     += 0.35;
         else if(Animation == "Running" || Animation == "Walking")
             image_index     += 1/max(8-abs(Speed), 1);
-        else if(Action == consActionRolling ||(Action == consActionCorkscrew &amp;&amp; Animation == "Rolling"))
+        else if(Action == ActionRolling ||(Action == ActionCorkscrew &amp;&amp; Animation == "Rolling"))
             image_index     += 1/max((5-abs(Speed)), 1);
-        else if(Action == consActionJumping)
+        else if(Action == ActionJumping)
             image_index     += JumpAnimSpeed;
         else if(Animation == "Fly"){
             if(Gravity &gt; 0)
@@ -787,7 +789,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>    if(Action == consActionDead){
+            <string>    if(Action == ActionDead){
         Gravity += 0.21875;
         y += Gravity;
         if(y &gt;= view_yview[0]+view_hview[0]+900 &amp;&amp; audio_is_playing(sndGameOver) == false){
@@ -803,7 +805,7 @@
                 FlagsAllowObjectHandle = true;
                 x       = global.Player[0].x;
                 y       = global.Player[0].y;
-                Action  = consActionNormal;
+                Action  = ActionNormal;
             }
         }
     }
@@ -849,7 +851,7 @@
             <kind>1</kind>
             <string>    if(CameraLock == false){  
         Camera.x = floor(AnimationX);
-        if(Action == consActionCrouchDown){
+        if(Action == ActionCrouchDown){
             LookTimer += 1;
             if(LookTimer &gt;= 120){
                 Camera.y = min(Camera.y+2+(y-yprevious), floor(y)+88)
@@ -859,7 +861,7 @@
                 if(Camera.y &gt; floor(y))
                     Camera.y = max(Camera.y-2, floor(y)); 
             }
-        }else if(Action == consActionLookUp){
+        }else if(Action == ActionLookUp){
             LookTimer += 1;
             if(LookTimer &gt;= 120){
                 Camera.y = max(Camera.y-2+(y-yprevious), floor(y)-104)
@@ -879,7 +881,7 @@
                     LookTimer = 0;
             }else{
                 Camera.y    = floor(AnimationY);
-                if(Action != consActionPipe &amp;&amp; Animation = "Rolling"){
+                if(Action != ActionPipe &amp;&amp; Animation = "Rolling"){
                     Camera.y  -= (5*Cos[Angle]);
                     Camera.x  -= (5*Sin[Angle]);
                 }
@@ -917,7 +919,7 @@
     }  
   
     Landed                  = false;
-    if(Action == consActionDead){
+    if(Action == ActionDead){
         depth = -9000;
         exit;
     }
@@ -988,7 +990,7 @@
             KeyAPressed = true;
         else
             KeyAPressed = false;
-        if(Action = consActionJumping)
+        if(Action = ActionJumping)
             KeyA    = true;
         else
             KeyA    = false;
@@ -1003,7 +1005,7 @@
                 RespawnTimer = 0;
                 y = view_yview[0]+view_wview[0]+40;
             }
-            Action = consActionCPURespawn;
+            Action = ActionCPURespawn;
         }
         if(x &gt; view_xview[0]+view_wview[0]+50){
             
@@ -1015,7 +1017,7 @@
                 RespawnTimer = 0;
                 y = view_yview[0]+view_wview[0]+40;
             }
-           Action = consActionCPURespawn;
+           Action = ActionCPURespawn;
         }
     }else if(instance_exists(objResults) == true &amp;&amp; instance_exists(objCapsule) == false &amp;&amp; Cutscene == false){
         KeyRight        = true;
@@ -1027,22 +1029,22 @@
         KeySPressed     = false;
         KeyDown         = false;
         KeyDownPressed  = false;
-        if(Action == consActionCrouchDown || Action == consActionSpindash || Action == consActionRolling || Action == consActionLookUp){
-            Action = consActionNormal;
+        if(Action == ActionCrouchDown || Action == ActionSpindash || Action == ActionRolling || Action == ActionLookUp){
+            Action = ActionNormal;
         }
     }
     if(Recording == true &amp;&amp; objGlobal.RecordingMode == consRecordRec){
         scrRecordInputRec();
     }    
 
-    if(KeyLeft == false &amp;&amp; KeyRight == false &amp;&amp; KeyA == false &amp;&amp; KeyUp == false &amp;&amp; KeyDown == false &amp;&amp; Action == consActionNormal)
+    if(KeyLeft == false &amp;&amp; KeyRight == false &amp;&amp; KeyA == false &amp;&amp; KeyUp == false &amp;&amp; KeyDown == false &amp;&amp; Action == ActionNormal)
         InputIdleTimer++;
     else
         InputIdleTimer = 0;
 
-    if(InputIdleTimer &gt; 10200 &amp;&amp; CharacterId == consCharacterSonic &amp;&amp; Action != consActionOuttaHere){
+    if(InputIdleTimer &gt; 10200 &amp;&amp; CharacterId == consCharacterSonic &amp;&amp; Action != ActionOuttaHere){
         audio_play_sound(sndSonicOuttaHere, 1, false);
-        Action = consActionOuttaHere;
+        Action = ActionOuttaHere;
     }
 </string>
           </argument>
@@ -1127,7 +1129,7 @@
         if(CurrentPalette &lt; 0)
             Deform = false;
     }
-    if(ShieldUsable == false &amp;&amp; Action != consActionJumping){
+    if(ShieldUsable == false &amp;&amp; Action != ActionJumping){
         ShieldUsable = true;
         ShieldAction = false;
     }
@@ -1151,20 +1153,20 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Update Physics/Water
+            <string>///Underwater
 
     
     if(instance_exists(objWater)){
-        if(y &gt; objWater.y &amp;&amp; Underwater == false &amp;&amp; Action != consActionPipe &amp;&amp; (Gravity &gt; 0 || Ground == true)){
+        if(y &gt; objWater.y &amp;&amp; Underwater == false &amp;&amp; Action != ActionPipe &amp;&amp; (Gravity &gt; 0 || Ground == true)){
             Gravity     *= 0.25;
             Speed       *= 0.5;
             Underwater   = true;
             if(Shield == consShieldElectric || Shield == consShieldFire)
                 Shield = 0;
-            if(Action == consActionFly)
+            if(Action == ActionFly)
                 audio_stop_sound(sndFly); 
             instance_create(x, objWater.y, objSplash);
-        }else if(y &lt; objWater.y &amp;&amp; Underwater == true &amp;&amp; Action != consActionPipe &amp;&amp; (Gravity &lt; 0 || Ground == true)){
+        }else if(y &lt; objWater.y &amp;&amp; Underwater == true &amp;&amp; Action != ActionPipe &amp;&amp; (Gravity &lt; 0 || Ground == true)){
             Gravity     *= 2;
             Underwater   = false;
             instance_create(x, objWater.y, objSplash);
@@ -1172,10 +1174,10 @@
                 audio_stop_sound(sndDrowning);
                 audio_resume_sound(ds_map_find_value(LvlMusic, room));
             }
-            if(Action == consActionFly)
+            if(Action == ActionFly)
                 audio_play_sound(sndFly, 1, true);
         }
-        if(Action == consActionPipe){
+        if(Action == ActionPipe){
             if(audio_is_playing(sndDrowning) &amp;&amp; PlayerId == 0){
                 audio_stop_sound(sndDrowning);
                 audio_resume_sound(ds_map_find_value(LvlMusic, room));
@@ -1183,9 +1185,59 @@
             Underwater = false;   
         }
     }
+    
+    if(Underwater == true){
+    //=============================================================
+    // -------- UNDERWATER HANDLE ---------------------
+    //=============================================================
 
+
+        if(Shield != consShieldWater &amp;&amp; Action != ActionPipe)
+            UnderwaterTimer -= 1;
+        else
+            UnderwaterTimer = 1800;
         
-    if(Underwater == false){
+        if(UnderwaterTimer &lt; 720 &amp;&amp; audio_is_playing(sndDrowning) == false &amp;&amp; UnderwaterTimer &gt; 500 &amp;&amp; PlayerId == 0){
+            audio_play_sound(sndDrowning, 1, false);
+            audio_pause_sound(ds_map_find_value(LvlMusic, room));
+        }else if(UnderwaterTimer &gt;= 720 &amp;&amp; audio_is_playing(sndDrowning) == true &amp;&amp; PlayerId == 0){
+            audio_stop_sound(sndDrowning);
+            audio_resume_sound(ds_map_find_value(LvlMusic, room));
+        }
+        if(UnderwaterTimer == 0){
+            Action = ActionDead;
+            if(PlayerId == 0)
+                audio_stop_sound(sndDrowning);
+            audio_play_sound(sndPlayerDrown, 1, false);
+            Speed              = 0;
+            Gravity            = 0;
+            CameraLock         = true;
+            Camera.CameraLock  = true;
+        }  
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Physics
+
+if(Underwater == false){
       // _______________________________
       // ----- NORMAL ------------------
       // _______________________________    
@@ -1194,7 +1246,7 @@
 
         UnderwaterTimer = 1800;
 
-        if(Action != consActionFly)
+        if(Action != ActionFly)
             GravityRate = 0.21875; 
         
         JumpRelease = JumpReleaseValue;   
@@ -1216,7 +1268,7 @@
               // _________________________________________________  
 
                 Acceleration = AccelRate;
-                if(Action != consActionFly)
+                if(Action != ActionFly)
                     TopSpeed = 6;
                 RollingFriction = 0.0234375; 
 
@@ -1228,7 +1280,7 @@
 
                 JumpHeight          = -8;
                 SkidRate            = 1;
-                if(Action != consActionFly)
+                if(Action != ActionFly)
                     TopSpeed            = 10;
                 RollingFriction     = 0.09375;
                 Acceleration = AccelRate*4;
@@ -1240,7 +1292,7 @@
           // ----- NORMAL(Speed Shoes) ------------------
           // _________________________________________________  
             Acceleration = AccelRate*2;
-            if(Action != consActionFly)
+            if(Action != ActionFly)
                 TopSpeed = 12;
             RollingFriction = 0.046875; 
           //--------------------------------------------------------
@@ -1253,7 +1305,7 @@
         JumpHeight      = JumpValueWater;
         JumpRelease     = JumpReleaseWater; 
         //--------------------------------------------------------
-        if(Action != consActionFly)
+        if(Action != ActionFly)
             GravityRate = 0.0625;
 
         if(Shield == consShieldElectric || Shield == consShieldFire)
@@ -1265,7 +1317,7 @@
           // ----- UNDERWATER(Normal form) --------------
           // ____________________________________________
 
-            if(Action != consActionFly)
+            if(Action != ActionFly)
                 TopSpeed = 3;
             
             Acceleration       = AccelRate/2;                
@@ -1277,7 +1329,7 @@
           // ----- UNDERWATER(Super Form) --------------
           // ___________________________________________
 
-            if(Action != consActionFly)
+            if(Action != ActionFly)
                 TopSpeed = 5;
             
             Acceleration      = AccelRate*2;
@@ -1288,37 +1340,11 @@
         //=============================================================   
 
    
-    //=============================================================
-    // -------- UNDERWATER HANDLE ---------------------
-    //=============================================================
-
-
-        if(Shield != consShieldWater &amp;&amp; Action != consActionPipe)
-            UnderwaterTimer -= 1;
-        else
-            UnderwaterTimer = 1800;
-        
-        if(UnderwaterTimer &lt; 720 &amp;&amp; audio_is_playing(sndDrowning) == false &amp;&amp; UnderwaterTimer &gt; 500 &amp;&amp; PlayerId == 0){
-            audio_play_sound(sndDrowning, 1, false);
-            audio_pause_sound(ds_map_find_value(LvlMusic, room));
-        }else if(UnderwaterTimer &gt;= 720 &amp;&amp; audio_is_playing(sndDrowning) == true &amp;&amp; PlayerId == 0){
-            audio_stop_sound(sndDrowning);
-            audio_resume_sound(ds_map_find_value(LvlMusic, room));
-        }
-        if(UnderwaterTimer == 0){
-            Action = consActionDead;
-            if(PlayerId == 0)
-                audio_stop_sound(sndDrowning);
-            audio_play_sound(sndPlayerDrown, 1, false);
-            Speed              = 0;
-            Gravity            = 0;
-            CameraLock         = true;
-            Camera.CameraLock  = true;
-        }        
+          
     }
        
  //=============================================================
-    if(Ground == false &amp;&amp; Action != consActionFly){
+    if(Ground == false &amp;&amp; Action != ActionFly){
         Acceleration *= 2;
     }
 </string>
@@ -1348,7 +1374,7 @@
 
 
     // -- Exit step event if player is dead. --
-    if(Action == consActionDead)
+    if(Action == ActionDead)
         exit;
 
 
@@ -1364,15 +1390,15 @@
     }
        
     // -- Handle Slope Factor(Acceleration and Deceleration on slopes) --
-    if(Ground == true &amp;&amp; Action != consActionRolling &amp;&amp; Action != consActionPipe &amp;&amp; Action != consActionCrouchDown &amp;&amp; Action != consActionSpindash
-    &amp;&amp; Action != consActionLookUp)
+    if(Ground == true &amp;&amp; Action != ActionRolling &amp;&amp; Action != ActionPipe &amp;&amp; Action != ActionCrouchDown &amp;&amp; Action != ActionSpindash
+    &amp;&amp; Action != ActionLookUp)
         Speed -= scrPlayerGetSlopeFactor()/SpeedMultiplier;               
     
     if(abs(Speed) &lt; 2 &amp;&amp; Shield == consShieldFire &amp;&amp; ShieldAction == true)
         ShieldAction = false;
      
 
-    if(Action == consActionRolling){
+    if(Action == ActionRolling){
         if(sign(Speed) == sign(global.Sin[Angle]))
             Speed -= (0.078125*global.Sin[Angle])/SpeedMultiplier;
         else
@@ -1381,14 +1407,14 @@
     }
 
     // -- Accelerate when holding LEFT/RIGHT keys, and decelerate when hold neither. --
-    if(InputAlarm &lt;= 0 &amp;&amp; ShieldAction == false &amp;&amp; (Action == consActionNormal ||(Action == consActionCorkscrew &amp;&amp; Animation != "Rolling")||(Action == consActionJumping &amp;&amp;(JumpVariable &gt;= 0 || RollJumpLock == false))
-    || Action == consActionFly || Action == consActionSpring)){
+    if(InputAlarm &lt;= 0 &amp;&amp; ShieldAction == false &amp;&amp; (Action == ActionNormal ||(Action == ActionCorkscrew &amp;&amp; Animation != "Rolling")||(Action == ActionJumping &amp;&amp;(JumpVariable &gt;= 0 || RollJumpLock == false))
+    || Action == ActionFly || Action == ActionSpring)){
         if(KeyLeft &amp;&amp; Speed &gt; -TopSpeed)
             Speed = max(Speed-Acceleration*SpeedMultiplier, -TopSpeed);            
         else if(KeyRight &amp;&amp; Speed &lt; TopSpeed)
             Speed = min(Speed+Acceleration*SpeedMultiplier, TopSpeed);
 
-        if(KeyRight == false &amp;&amp; KeyLeft == false &amp;&amp; Speed != 0 &amp;&amp;(Ground == true || Action == consActionCorkscrew))   
+        if(KeyRight == false &amp;&amp; KeyLeft == false &amp;&amp; Speed != 0 &amp;&amp;(Ground == true || Action == ActionCorkscrew))   
             Speed -= min(abs(Speed), Acceleration*SpeedMultiplier)*sign(Speed);
             
     }
@@ -1406,30 +1432,6 @@
             Homing = false;
         }
     }
-        
-    
-    
-    if(FlagsAllowXMovement == true){
-        scrPlayerHandleBreakableTerrain();
-        scrPlayerWallCollision();
-    }
-        
-   
-    if(x &lt;= objController.CameraMinX+16){
-        x = objController.CameraMinX+16;
-        if(Speed &lt; 0)
-            Speed = 0;
-    }else if(x &gt;= objController.CameraMaxX-16){
-        x = objController.CameraMaxX-16;
-        if(Speed &gt; 0)
-            Speed = 0;
-    }
-   
-        
-    if(FlagsAllowXMovement == true)
-        scrPlayerSpeedMovement();   
-    
-        //scrPlayerHandleMonitors();
         
 </string>
           </argument>
@@ -1452,8 +1454,28 @@
           <argument>
             <kind>1</kind>
             <string>///Movement    
-    if(Action == consActionDead)
+    if(Action == ActionDead)
         exit;
+        
+    if(FlagsAllowXMovement == true){
+        scrPlayerHandleBreakableTerrain();
+        scrPlayerWallCollision();
+    }
+        
+   
+    if(x &lt;= objController.CameraMinX+16){
+        x = objController.CameraMinX+16;
+        if(Speed &lt; 0)
+            Speed = 0;
+    }else if(x &gt;= objController.CameraMaxX-16){
+        x = objController.CameraMaxX-16;
+        if(Speed &gt; 0)
+            Speed = 0;
+    }
+   
+        
+    if(FlagsAllowXMovement == true)
+        scrPlayerSpeedMovement();  
         
     if(FlagsAllowYMovement == true){
         scrPlayerHandleBreakableTerrain(); 
@@ -1464,9 +1486,9 @@
                 Speed -= (Speed/0.125)/256;  
            
             scrPlayerGravityMovement();
-;
-            if(Ground == false &amp;&amp; Action != consActionGlide &amp;&amp; Action != consActionClimb &amp;&amp; Action != consActionClimbRise &amp;&amp; Action != consActionTransform
-            &amp;&amp; Action != consActionGrab &amp;&amp; Action != consActionQuicksand) 
+
+            if(Ground == false &amp;&amp; Action != ActionGlide &amp;&amp; Action != ActionClimb &amp;&amp; Action != ActionClimbRise &amp;&amp; Action != ActionTransform
+            &amp;&amp; Action != ActionGrab &amp;&amp; Action != ActionQuicksand) 
                 Gravity += GravityRate*SpeedMultiplier;        
         }
     }
@@ -1543,89 +1565,10 @@
 
     
     if(Cutscene == false || AllowAction == true){   
-        switch(Action){
-            case consActionNormal:
-                scrPlayerActionNormal();
-                break;
-            case consActionJumping:
-                scrPlayerActionJumping();
-                break;    
-            case consActionRolling:
-                scrPlayerActionRolling();
-                break;  
-            case consActionCrouchDown:
-                scrPlayerActionCrouchDown();
-                break; 
-            case consActionSpindash:
-                scrPlayerActionSpindash();
-                break; 
-            case consActionSpring:
-                scrPlayerActionSpring();
-                break; 
-            case consActionSkid:
-                scrPlayerActionSkid();
-                break;
-            case consActionPush:
-                scrPlayerActionPushing();
-                break;
-            case consActionHurt:
-                scrPlayerActionHurt();
-                break;
-            case consActionLookUp:
-                scrPlayerActionLookUp();
-                break;
-            case consActionPipe:
-                scrPlayerActionPipe();
-                break;
-            case consActionFly:
-                scrPlayerActionFly();
-                break;
-            case consActionCPURespawn:
-                scrPlayerActionCPURespawn();
-                break;
-            case consActionGlide:
-                scrPlayerActionGlide();
-                break;
-            case consActionGlideFall:
-                scrPlayerActionGlideFall();
-                break;
-            case consActionGlideSlide:
-                scrPlayerActionGlideSlide();
-                break;
-            case consActionClimb:
-                scrPlayerActionClimb();
-                break;
-            case consActionClimbRise:
-                scrPlayerActionClimbRise();
-                break;
-            case consActionTransform:
-                scrPlayerActionTransform();
-                break;
-            case consActionGrab:
-                scrPlayerActionGrab();
-                break;
-            case consActionGrabFall:
-                scrPlayerActionGrabFall();
-                break;
-            case consActionCorkscrew:
-                scrPlayerActionCorkscrew();
-                break;
-            case consActionQuicksand:
-                scrPlayerActionQuicksand();
-                break;
-            case consActionPeelout:
-                scrPlayerActionPeelout();
-                break;
-            case consActionSlide:
-                scrPlayerActionSlide();
-                break;
-            case consActionOuttaHere:
-                scrPlayerActionOuttaHere();
-                break;
-            case consActionDebug:
-                scrPlayerActionDebug();
-                break;
-        }
+    
+        script_execute(Action);
+    
+       
     }
 </string>
           </argument>
@@ -1650,17 +1593,16 @@
             <string>///Misc
 
     
-    if((y &gt;= room_height &amp;&amp; Action != consActionCPURespawn)||(global.GameTime &gt;= 599000 &amp;&amp; DebugMode == false)){
+    if((y &gt;= room_height &amp;&amp; Action != ActionCPURespawn)||(global.GameTime &gt;= 599000 &amp;&amp; DebugMode == false))
         scrPlayerDead(sndPlayerDead);
-    }
+        
     
-    
-    if(Action != consActionFly &amp;&amp;(audio_is_playing(sndFly) || audio_is_playing(sndFlyFall))){
+    if(Action != ActionFly &amp;&amp;(audio_is_playing(sndFly) || audio_is_playing(sndFlyFall))){
         audio_stop_sound(sndFly);
         audio_stop_sound(sndFlyFall);
     }
     
-    if(Action != consActionFly){
+    if(Action != ActionFly){
         FlyTimer    = 480;
         FlyFlag     = 0;
     }
@@ -1669,13 +1611,16 @@
         Shield            = 0;   
         ShieldAnimation   = 0; 
     }
-
-
+ 
+    if(AirDash == true &amp;&amp; Action != ActionJumping)
+        AirDash = false;
+     
+    
     // -------- Speed Cap -------------------
  
-    if(scrPlayerCollisionSquish()){
+    if(scrPlayerCollisionSquish())
         scrPlayerDead(sndPlayerDead);  
-    }
+    
     if(Layer == 0)
         instance_activate_object(objParentLayer1);
     else if(Layer == 1)
@@ -1738,7 +1683,7 @@
     // ---------------------------------------------------------------------------------------- //          
         
         // Make the trail positions smaller
-        if(Animation == "Rolling" &amp;&amp; Action != consActionPipe &amp;&amp;(x != xprevious || y != yprevious)){
+        if(Animation == "Rolling" &amp;&amp; Action != ActionPipe &amp;&amp;(x != xprevious || y != yprevious)){
             // Calculate angle from previous position to current to add a new trail segment
             TrailAngle = degtorad(point_direction(x, y, xprevious, yprevious)+90);
             ds_list_add(VertexX1, x-cos(TrailAngle)*12)
@@ -1779,39 +1724,12 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Listener(Unused)
-
-    if(PlayerId == 0){
-       // audio_listener_position(x, y, 0);
-        //audio_listener_velocity(Speed*global.Cos[Angle], Gravity*-global.Sin[Angle], 0);
-        //audio_listener_orientation(x+global.Cos[Angle], y-global.Sin[Angle], 0, 0, 1, 0);
-    }
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>///Debug
     if(keyboard_check_pressed(ord("E")) &amp;&amp; SuperForm == true){
         HyperForm = true;   
     }
     if(KeyCPressed &amp;&amp; DebugMode){
-        Action         = consActionDebug;
+        Action         = ActionDebug;
         image_xscale   = 1;
     }
 </string>
@@ -1837,14 +1755,14 @@
             <string>///Speed Caps
 
     if(FlagSpeedCap == 1){
-        if(Action != consActionRolling &amp;&amp; (Action != consActionJumping || JumpVariable &gt; 0) &amp;&amp; InputAlarm &lt;= 0){
+        if(Action != ActionRolling &amp;&amp; (Action != ActionJumping || JumpVariable &gt; 0) &amp;&amp; InputAlarm &lt;= 0){
             if(KeyRight)
                 Speed = min(Speed, TopSpeed);
             if(KeyLeft)
                 Speed = max(Speed, -TopSpeed);
         }
     }else if(FlagSpeedCap == 2){
-        if(Ground == false &amp;&amp; (Action != consActionJumping || JumpVariable &gt; 0) &amp;&amp; InputAlarm &lt;= 0){
+        if(Ground == false &amp;&amp; (Action != ActionJumping || JumpVariable &gt; 0) &amp;&amp; InputAlarm &lt;= 0){
         
             if(KeyRight)
                 Speed = min(Speed, TopSpeed);
@@ -2186,21 +2104,21 @@
         draw_sprite_ext(sprite_index, image_index*SpeedMultiplier, floor(AnimationX), floor(AnimationY), image_xscale, 1, image_angle, c_white, image_alpha);
     }
 
-    if(Action == consActionSpindash &amp;&amp; Spindash != 2)
+    if(Action == ActionSpindash &amp;&amp; Spindash != 2)
         draw_sprite_ext(sprSpindashDust, Frame/2, floor(AnimationX), floor(y), image_xscale, 1, 0, c_white, 1);
         
-    if(Shield == consShieldNormal &amp;&amp;((SuperForm == false &amp;&amp; Invincibility &lt;= 1 &amp;&amp; Action != consActionTransform)|| ShowShieldsInv == true)){
+    if(Shield == consShieldNormal &amp;&amp;((SuperForm == false &amp;&amp; Invincibility &lt;= 1 &amp;&amp; Action != ActionTransform)|| ShowShieldsInv == true)){
         draw_sprite_ext(sprShieldNormal, Frame, floor(AnimationX), floor(AnimationY), 1, 1, 0, c_white, 1);  
     }
-    if(Shield == consShieldElectric &amp;&amp; 24-(floor(Frame/4) mod 24) &gt; 8 &amp;&amp;((SuperForm == false &amp;&amp; Invincibility &lt;= 1 &amp;&amp; Action != consActionTransform)|| ShowShieldsInv == true)){
+    if(Shield == consShieldElectric &amp;&amp; 24-(floor(Frame/4) mod 24) &gt; 8 &amp;&amp;((SuperForm == false &amp;&amp; Invincibility &lt;= 1 &amp;&amp; Action != ActionTransform)|| ShowShieldsInv == true)){
         draw_sprite_ext(sprShieldElectric, floor(Frame/4), floor(AnimationX), floor(AnimationY), 1, 1, 0, c_white, 1);  
     }
-    if(Shield == consShieldInstashield &amp;&amp;((SuperForm == false &amp;&amp; Invincibility &lt;= 1 &amp;&amp; Action != consActionTransform)|| ShowShieldsInv == true)){
+    if(Shield == consShieldInstashield &amp;&amp;((SuperForm == false &amp;&amp; Invincibility &lt;= 1 &amp;&amp; Action != ActionTransform)|| ShowShieldsInv == true)){
         draw_sprite_ext(sprShieldInstashield, floor(ShieldAnimation), floor(AnimationX), floor(AnimationY), image_xscale, 1, 0, c_white, 1);  
         ShieldAnimation += 1;
     }
 
-    if(Shield == consShieldWater &amp;&amp;((SuperForm == false &amp;&amp; Invincibility &lt;= 1 &amp;&amp; Action != consActionTransform)|| ShowShieldsInv == true)){
+    if(Shield == consShieldWater &amp;&amp;((SuperForm == false &amp;&amp; Invincibility &lt;= 1 &amp;&amp; Action != ActionTransform)|| ShowShieldsInv == true)){
         if(ShieldAction == false){
             draw_sprite_ext(sprShieldBubble, floor(Frame/4), floor(AnimationX), floor(AnimationY), 1, 1, 0, c_white, 1);  
             ShieldAnimation = 0;
@@ -2209,7 +2127,7 @@
             ShieldAnimation = min(ShieldAnimation+0.5, 3);          
         }
     }
-    if(Shield == consShieldFire &amp;&amp;((SuperForm == false &amp;&amp; Invincibility &lt;= 1 &amp;&amp; Action != consActionTransform)|| ShowShieldsInv == true)){
+    if(Shield == consShieldFire &amp;&amp;((SuperForm == false &amp;&amp; Invincibility &lt;= 1 &amp;&amp; Action != ActionTransform)|| ShowShieldsInv == true)){
         if(ShieldAction == false){
             draw_sprite_ext(sprShieldFireFront, Frame/4, floor(AnimationX), floor(AnimationY), 1, 1, 0, c_white, 1);  
             ShieldAnimation = 0;

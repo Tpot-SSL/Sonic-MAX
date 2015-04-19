@@ -10,7 +10,7 @@
     var InitAngle, X, Y, X2, Y2, Object;
 
     InitAngle = scrWrapAngle(AngleMode*90); // Round angle to nearest 10.   
-    if(Action == consActionJumping || Action == consActionRolling)
+    if(Action == ActionJumping || Action == ActionRolling)
         Length = 10;
     else
         Length = 20;

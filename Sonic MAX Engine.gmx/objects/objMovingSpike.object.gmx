@@ -93,7 +93,7 @@
                 Player = global.Player[i];
                 while(place_meeting(x, y, objPlayer)){
                     Player.y -= 1;
-                    if(Player.Action != consActionHurt &amp;&amp; Player.Action != consActionDead)
+                    if(Player.Action != ActionHurt &amp;&amp; Player.Action != ActionDead)
                         with(Player)  
                             scrPlayerHurt(other.id, sndPlayerSpike);                   
                 }

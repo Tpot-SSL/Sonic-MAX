@@ -12,7 +12,7 @@
             if(_ObjectHandle.Script != -1)   
                 script_execute(_ObjectHandle.Script);
     
-            if(_ObjectHandle.Action != consActionNone)   
+            if(_ObjectHandle.Action != -1)   
                 Action = _ObjectHandle.Action;  
     
             if(_ObjectHandle.Animation != "")   

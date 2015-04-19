@@ -845,33 +845,38 @@
         <script>scripts\scrPlayerHandleCutscenes.gml</script>
       </scripts>
       <scripts name="Actions">
-        <script>scripts\scrPlayerActionNormal.gml</script>
-        <script>scripts\scrPlayerActionJumping.gml</script>
-        <script>scripts\scrPlayerActionGrabFall.gml</script>
-        <script>scripts\scrPlayerActionRolling.gml</script>
-        <script>scripts\scrPlayerActionCrouchDown.gml</script>
-        <script>scripts\scrPlayerActionLookUp.gml</script>
-        <script>scripts\scrPlayerActionSpring.gml</script>
-        <script>scripts\scrPlayerActionSpindash.gml</script>
-        <script>scripts\scrPlayerActionPeelout.gml</script>
-        <script>scripts\scrPlayerActionSkid.gml</script>
-        <script>scripts\scrPlayerActionPushing.gml</script>
-        <script>scripts\scrPlayerActionHurt.gml</script>
-        <script>scripts\scrPlayerActionPipe.gml</script>
-        <script>scripts\scrPlayerActionFly.gml</script>
-        <script>scripts\scrPlayerActionCPURespawn.gml</script>
-        <script>scripts\scrPlayerActionGlide.gml</script>
-        <script>scripts\scrPlayerActionGlideFall.gml</script>
-        <script>scripts\scrPlayerActionGlideSlide.gml</script>
-        <script>scripts\scrPlayerActionClimb.gml</script>
-        <script>scripts\scrPlayerActionClimbRise.gml</script>
-        <script>scripts\scrPlayerActionTransform.gml</script>
-        <script>scripts\scrPlayerActionGrab.gml</script>
-        <script>scripts\scrPlayerActionCorkscrew.gml</script>
-        <script>scripts\scrPlayerActionQuicksand.gml</script>
-        <script>scripts\scrPlayerActionSlide.gml</script>
-        <script>scripts\scrPlayerActionOuttaHere.gml</script>
-        <script>scripts\scrPlayerActionDebug.gml</script>
+        <scripts name="Action Init">
+          <script>scripts\scrPlayerHurt.gml</script>
+          <script>scripts\scrPlayerJump.gml</script>
+          <script>scripts\scrPlayerDead.gml</script>
+        </scripts>
+        <script>scripts\ActionNormal.gml</script>
+        <script>scripts\ActionJumping.gml</script>
+        <script>scripts\ActionRolling.gml</script>
+        <script>scripts\ActionCrouchDown.gml</script>
+        <script>scripts\ActionLookUp.gml</script>
+        <script>scripts\ActionSpring.gml</script>
+        <script>scripts\ActionSpindash.gml</script>
+        <script>scripts\ActionSkid.gml</script>
+        <script>scripts\ActionPush.gml</script>
+        <script>scripts\ActionHurt.gml</script>
+        <script>scripts\ActionPipe.gml</script>
+        <script>scripts\ActionFly.gml</script>
+        <script>scripts\ActionCPURespawn.gml</script>
+        <script>scripts\ActionGlide.gml</script>
+        <script>scripts\ActionGlideFall.gml</script>
+        <script>scripts\ActionGlideSlide.gml</script>
+        <script>scripts\ActionClimb.gml</script>
+        <script>scripts\ActionClimbRise.gml</script>
+        <script>scripts\ActionTransform.gml</script>
+        <script>scripts\ActionGrab.gml</script>
+        <script>scripts\ActionCorkscrew.gml</script>
+        <script>scripts\ActionPeelout.gml</script>
+        <script>scripts\ActionQuicksand.gml</script>
+        <script>scripts\ActionGrabFall.gml</script>
+        <script>scripts\ActionSlide.gml</script>
+        <script>scripts\ActionOuttaHere.gml</script>
+        <script>scripts\ActionDebug.gml</script>
       </scripts>
       <scripts name="Animation_System">
         <script>scripts\scrAnimationSystemAddRepeat.gml</script>
@@ -884,10 +889,7 @@
         <script>scripts\scrReloadAnimations.gml</script>
       </scripts>
       <scripts name="General">
-        <script>scripts\scrPlayerHurt.gml</script>
         <script>scripts\scrCreateRingLoss.gml</script>
-        <script>scripts\scrPlayerDead.gml</script>
-        <script>scripts\scrPlayerJump.gml</script>
         <script>scripts\scrPlayerGetSlopeFactor.gml</script>
         <script>scripts\scrPlayerChangeCharacter.gml</script>
         <script>scripts\scrPlayerResetTrail.gml</script>
@@ -896,7 +898,7 @@
         <script>scripts\scrPlayerFindHoming.gml</script>
         <script>scripts\scrPlayerHomingAttack.gml</script>
       </scripts>
-      <scripts name="Collision_System">
+      <scripts name="Physics and Collisions">
         <scripts name="Sensors">
           <script>scripts\scrCollisionMain.gml</script>
           <script>scripts\scrPlayerCollisionASensor.gml</script>
@@ -1505,9 +1507,9 @@
     <room>rooms\roomCutscene</room>
     <room>rooms\roomCredits</room>
   </rooms>
-  <constants number="77">
+  <constants number="75">
     <constant name="consActionNone">-3</constant>
-    <constant name="consActionDead">-2</constant>
+    <constant name="ActionDead">-2</constant>
     <constant name="consActionHurt">-1</constant>
     <constant name="consActionNormal">0</constant>
     <constant name="consActionJumping">1</constant>
@@ -1564,8 +1566,6 @@
     <constant name="consCharacterSonic">1</constant>
     <constant name="consCharacterTails">2</constant>
     <constant name="consCharacterKnuckles">3</constant>
-    <constant name="GM_build_date">41932.8696516319</constant>
-    <constant name="GM_version">'0.5.6'</constant>
     <constant name="consTerrainBlock">0</constant>
     <constant name="consTerrainSlant">1</constant>
     <constant name="consTerrainCurve">2</constant>

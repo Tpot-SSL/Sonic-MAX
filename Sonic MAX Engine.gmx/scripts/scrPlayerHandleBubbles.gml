@@ -8,7 +8,7 @@
                 Speed = 0;
                 Gravity = 0;
                 Animation = "Breath";
-                Action = consActionNormal;
+                Action = ActionNormal;
                 audio_play_sound(sndPlayerGetAir, 1, false);
                 
             }

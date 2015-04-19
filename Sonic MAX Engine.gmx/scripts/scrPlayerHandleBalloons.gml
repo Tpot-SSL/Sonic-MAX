@@ -6,7 +6,7 @@
             Gravity             = -7;
             JumpVariable        = false;
             scrPlayerResetTrail();
-            Action              = consActionJumping;
+            Action              = ActionJumping;
             InputAlarm          = 0;
             Ground              = false;
             Angle               = 0;

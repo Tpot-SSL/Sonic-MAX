@@ -39,7 +39,7 @@
         if(TerrainLeft != noone && instance_exists(TerrainLeft) == false)
             TerrainLeft = noone;
         if(TerrainLeft != noone &&(TerrainLeft.Layer == Layer || TerrainLeft.Layer == -1) &&(TerrainLeft.Platform == false 
-        ||(TerrainLeft.Platform == true && AngleMode == 0)|| (TerrainLeft.Platform == 2  && Action != consActionJumping))){ 
+        ||(TerrainLeft.Platform == true && AngleMode == 0)|| (TerrainLeft.Platform == 2  && Action != ActionJumping))){ 
             LeftX  = LeftX2;
             LeftY  = LeftY2;
             break;
@@ -56,7 +56,7 @@
         if(TerrainRight != noone && instance_exists(TerrainRight) == false)
             TerrainRight = noone;
         if(TerrainRight != noone &&(TerrainRight.Layer == Layer || TerrainRight.Layer == -1) &&(TerrainRight.Platform == false 
-        ||(TerrainRight.Platform == true && AngleMode == 0)|| (TerrainRight.Platform == 2  && Action != consActionJumping))){ 
+        ||(TerrainRight.Platform == true && AngleMode == 0)|| (TerrainRight.Platform == 2  && Action != ActionJumping))){ 
             RightX  = RightX2;
             RightY  = RightY2;
             break;
@@ -76,7 +76,7 @@
             TerrainMiddle2 = collision_point(MiddleX2-(Sin[InitAngle]), MiddleY2-(Cos[InitAngle]), TerrainMiddle, true, true)
             if(TerrainMiddle2 != noone && instance_exists(TerrainMiddle2)){
                 if((TerrainMiddle2.Layer == Layer || TerrainMiddle2.Layer == -1) &&(TerrainMiddle2.Platform == false 
-                ||(TerrainMiddle2.Platform == true && AngleMode == 0) || (Object.Platform == 2  && Action != consActionJumping))){
+                ||(TerrainMiddle2.Platform == true && AngleMode == 0) || (Object.Platform == 2  && Action != ActionJumping))){
                     TerrainMiddle = noone;
                     MiddleX2 = x+20*Sin[InitAngle];
                     MiddleY2 = y+20*Cos[InitAngle];   
@@ -85,7 +85,7 @@
             }
         }
         if(TerrainMiddle != noone &&(TerrainMiddle.Layer == Layer || TerrainMiddle.Layer == -1) &&(TerrainMiddle.Platform == false 
-        ||(TerrainMiddle.Platform == true && AngleMode == 0)|| (TerrainMiddle.Platform == 2  && Action != consActionJumping))){ 
+        ||(TerrainMiddle.Platform == true && AngleMode == 0)|| (TerrainMiddle.Platform == 2  && Action != ActionJumping))){ 
             MiddleX  = MiddleX2;
             MiddleY  = MiddleY2;
             break;

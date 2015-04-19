@@ -20,8 +20,8 @@
             }
             if(ShieldAction == true)
                 ShieldAction = false;
-            if(Action != consActionJumping && Action != consActionRolling)
-                Action = consActionNormal;
+            if(Action != ActionJumping && Action != ActionRolling)
+                Action = ActionNormal;
             if(_ObjectHandle.Bounce < 10){
                 ScoreAdd        = instance_create(x, y, objScoreAdd)
                 ScoreAdd.Score  = 10;

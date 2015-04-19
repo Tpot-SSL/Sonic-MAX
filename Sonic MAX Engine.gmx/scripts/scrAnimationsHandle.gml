@@ -1,6 +1,6 @@
 
     switch(Action){    
-        case consActionNormal:
+        case ActionNormal:
             //--- Running ----
             if(abs(Speed) >= 6 && (Animation != "Breath"|| Ground == true))
                 Animation = "Running";
@@ -87,74 +87,74 @@
                     Animation = "Corkscrew";
             }
             break;
-        case consActionJumping:
-        case consActionRolling:
-        case consActionPipe:
+        case ActionJumping:
+        case ActionRolling:
+        case ActionPipe:
             Animation = "Rolling";
             break;
-        case consActionSpindash:
+        case ActionSpindash:
             if(Spindash == 2)
                 Animation = "Rolling";
             else
                 Animation = "Spindash";
             break;
-        case consActionCrouchDown:
+        case ActionCrouchDown:
             Animation = "CrouchDown";
             break;
-        case consActionQuicksand:
+        case ActionQuicksand:
             Animation = "Rolling";
             break;
-        case consActionSpring:
+        case ActionSpring:
             if(Gravity <= 0 && Animation != "Corkscrew")
                 Animation = "Spring";
             else if(Animation != "Corkscrew")
                 Animation = "Walking";
             break;
-        case consActionSkid:
+        case ActionSkid:
             Animation = "Skidding";
             break;
-        case consActionPush:
+        case ActionPush:
             Animation = "Pushing";
             break;
-        case consActionHurt:
-        case consActionSlide:
+        case ActionHurt:
+        case ActionSlide:
             Animation = "Hurt";
             break;
-        case consActionDead:
+        case ActionDead:
             Animation = "Dead";
             break;
-        case consActionLookUp:
+        case ActionLookUp:
             Animation = "LookUp";
             break;
-        case consActionGlide:
+        case ActionGlide:
             Animation = "Glide";
             break;
-        case consActionGlideFall:
+        case ActionGlideFall:
             Animation = "GlideFall";
             break;
-        case consActionPeelout:
+        case ActionPeelout:
             Animation = "Peelout";
             break;
-        case consActionClimb:
+        case ActionClimb:
             Animation = "Climb";
             break;
-        case consActionClimbRise:
+        case ActionClimbRise:
             if(Animation != "Idle")
                 Animation = "ClimbRise";
             break;
-        case consActionGlideSlide:
+        case ActionGlideSlide:
             if(Animation != "GlideSlide2" && Animation != "Idle")
                 Animation = "GlideSlide";
             break;
-        case consActionTransform:
+        case ActionTransform:
             if(Animation != "Transform")
                 Animation = "Transform";
             break;
-        case consActionOuttaHere:
+        case ActionOuttaHere:
             if(Animation != "OuttaHere")
                 Animation = "OuttaHere";
             break;
-        case consActionFly:
+        case ActionFly:
             if(Underwater == false){
                 if(FlyTimer > 0)
                     Animation = "Fly";
@@ -167,11 +167,11 @@
                     Animation = "SwimTired";
             }
             break;
-        case consActionGrab:
+        case ActionGrab:
             if(Animation != "Grab")
                 Animation = "Grab";
             break;
-        case consActionCPURespawn:
+        case ActionCPURespawn:
             if(CharacterId == consCharacterTails){
                 if(Underwater == false)
                     Animation = "Fly";
@@ -183,7 +183,7 @@
             }else
                 Animation = "Rolling";    
             break;
-        case consActionCorkscrew:
+        case ActionCorkscrew:
             if(Animation != "Corkscrew" && Animation != "Rolling")
                 Animation = "Corkscrew";
             break;

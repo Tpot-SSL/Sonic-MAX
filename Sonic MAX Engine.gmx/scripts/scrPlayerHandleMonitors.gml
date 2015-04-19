@@ -4,7 +4,7 @@
     
     _ObjectHandle = collision_rectangle(x-11+Speed, y-16-(8*(Gravity < 0)), x+11+Speed, y+20, objMonitor, false, true);
     if(_ObjectHandle != noone){
-        if((Action == consActionRolling || Action == consActionGlide) || (Action == consActionJumping && Gravity > 0)){
+        if((Action == ActionRolling || Action == ActionGlide) || (Action == ActionJumping && Gravity > 0)){
             if(KeyA || JumpVariable == false)
                 Gravity *= -1;
             else
@@ -17,7 +17,7 @@
                 instance_destroy();
             }
 
-        }else if(y > _ObjectHandle.y+8 && Gravity <= 0 && Action != consActionRolling){
+        }else if(y > _ObjectHandle.y+8 && Gravity <= 0 && Action != ActionRolling){
             Gravity = 0;
             scrPushPlayerYDown();
             if(SKMonitors == false){
@@ -26,7 +26,7 @@
                     Gravity = -2;
                 }
             }
-        }else if( y <= _ObjectHandle.y+8 && Gravity <= 0 && Action != consActionRolling){
+        }else if( y <= _ObjectHandle.y+8 && Gravity <= 0 && Action != ActionRolling){
             scrPushPlayerX();
         }  
         

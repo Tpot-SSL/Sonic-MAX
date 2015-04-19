@@ -77,7 +77,7 @@
     repeat(Height){
         Object = collision_point(floor(LeftX2), floor(LeftY2), TerrainId, true, true);
         if((Object != noone &&(Object.Layer == Layer || Object.Layer == -1) &&(Object.Platform == false 
-        ||(Object.Platform == true && AngleMode == 0)|| (Object.Platform == 2  && Action != consActionJumping)))){ 
+        ||(Object.Platform == true && AngleMode == 0)|| (Object.Platform == 2  && Action != ActionJumping)))){ 
             TempTerrain = Object;
             break;
         }else{
@@ -123,7 +123,7 @@
     repeat(Height){
         Object = collision_point(floor(RightX2), floor(RightY2), TerrainId, true, true);
         if((Object != noone &&(Object.Layer == Layer || Object.Layer == -1) &&(Object.Platform == false 
-        ||(Object.Platform == true  && AngleMode == 0)|| (Object.Platform == 2  && Action != consActionJumping)))){ 
+        ||(Object.Platform == true  && AngleMode == 0)|| (Object.Platform == 2  && Action != ActionJumping)))){ 
             TempTerrain = Object;
             break;
         }else{

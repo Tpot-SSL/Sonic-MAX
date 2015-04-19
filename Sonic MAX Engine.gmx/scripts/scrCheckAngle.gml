@@ -169,7 +169,7 @@
     repeat(AngleSensorHeight){
         Object = collision_point(LeftX2, LeftY2, objParentTerrain, true, true);
         if((Object != noone &&(Object.Layer == Layer || Object.Layer == -1) &&(Object.Platform == false 
-        ||(Object.Platform == true && AngleMode == 0)|| (Object.Platform == 2  && Action != consActionJumping)))){ 
+        ||(Object.Platform == true && AngleMode == 0)|| (Object.Platform == 2  && Action != ActionJumping)))){ 
             TempTerrain = Object;
             break;
         }else{
@@ -190,7 +190,7 @@
     repeat(AngleSensorHeight){ 
         Object = collision_point(RightX2, RightY2, objParentTerrain, true, true);
         if((Object != noone &&(Object.Layer == Layer || Object.Layer == -1) &&(Object.Platform == false 
-        ||(Object.Platform == true  && AngleMode == 0) || (Object.Platform == 2  && Action != consActionJumping)))){ 
+        ||(Object.Platform == true  && AngleMode == 0) || (Object.Platform == 2  && Action != ActionJumping)))){ 
             TempTerrain = Object;
             break;
         }else{

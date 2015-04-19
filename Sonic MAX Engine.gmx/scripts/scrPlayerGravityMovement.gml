@@ -34,11 +34,11 @@
             scrPlayerHandleMonitors();
             scrPlayerHandleBreakableTerrain();
             scrPlayerWallCollision();
-            //scrPushPlayerYLand();
+            
             scrPushPlayerX();
             scrPushPlayerYDown();
-           // scrPushPlayerY();
-            if(Action == consActionJumping)
+           
+            if(Action == ActionJumping)
                 Length = 10;
             else
                 Length = 20;
@@ -72,39 +72,38 @@
                            
                     ShieldUsable    = true;    
 
-                   // if(AngleBothSensors <= 1 ||(scrPlayerCollisionASensor360(objParentTerrain, 0) 
-                   // && scrPlayerCollisionBSensor360(objParentTerrain, 0)))
+                   
                     Angle = scrCheckAngle(); 
                     
                     if((Angle > 315 || Angle < 45))
                         AngleMode = 0;
                     else if((Angle > 45 && Angle < 135))
                         AngleMode = 1;
-                    else if((Angle > 135 && Angle < 225)){
+                    else if((Angle > 135 && Angle < 225))
                         AngleMode = 2;
-                    }else if((Angle > 225 && Angle < 315))
+                    else if((Angle > 225 && Angle < 315))
                         AngleMode = 3;
                     
                     if(abs(Speed) <= abs(Gravity) && Angle >= 22.5 && Angle <= 337.5 && TerrainId.object_index != objObjectSeesaw){
                         Speed   = -Gravity*sign(global.Sin[Angle]);
                         if(Angle < 45 || Angle > 315) 
                             Speed *= 0.5;
-                    }else if(TerrainId.object_index == objObjectSeesaw){
+                    else if(TerrainId.object_index == objObjectSeesaw)
                         Angle = 0;
                     }if(abs(Speed) > 0.5 && KeyDown && Ground 
-                    &&(RollMoveLock == false ||(KeyRight == false && KeyLeft == false))&&(Action == consActionNormal || Action == consActionJumping)){
+                    &&(RollMoveLock == false ||(KeyRight == false && KeyLeft == false))&&(Action == ActionNormal || Action == ActionJumping)){
                         scrPlayerResetTrail();
                         audio_play_sound(sndPlayerRoll, 1, false);
-                        Action = consActionRolling;
+                        Action = ActionRolling;
                     }
-                    if(Action == consActionHurt){
+                    if(Action == ActionHurt){
                         Invincibility        = 1;
                         InvincibilityTimer   = 120;
-                        Action               = consActionNormal;
+                        Action               = ActionNormal;
                     }
     
-                    Gravity   = 0;   
-                    GravityMax = 0;
+                    Gravity     = 0;   
+                    GravityMax  = 0;
                     
                     exit;   
                 }
@@ -112,10 +111,10 @@
 
             if((Object != noone &&(Object.Layer == Layer || Object.Layer == -1) &&(Object.Platform != true)) || 
             (Object2 != noone &&(Object2.Layer == Layer || Object2.Layer == -1) &&(Object2.Platform != true)) ||
-            (Object3 != noone &&(Object3.Layer == Layer || Object3.Layer == -1) &&(Object3.Platform != true))){                   
-               // scrPushPlayerYDown();   
-                Y = y;          
-                AngleMode = 2;
+            (Object3 != noone &&(Object3.Layer == Layer || Object3.Layer == -1) &&(Object3.Platform != true))){                                    
+                Y          = y;          
+                AngleMode  = 2;
+                
                 if(Gravity < -0.5){
                     Angle     = 180;
                     Ground = true;
@@ -123,12 +122,10 @@
                     scrCheckGroundLevel();      
                     scrPushPlayerX(); 
                     scrPushPlayerY();     
-                   // if(AngleBothSensors <= 1 ||(scrPlayerCollisionASensor360(objParentTerrain, 0) 
-                   // && scrPlayerCollisionBSensor360(objParentTerrain, 0)))
-                        Angle = scrCheckAngle(); 
+                    Angle = scrCheckAngle(); 
 
                     if(((Angle > 90 && Angle <= 135)||(Angle >= 225 && Angle < 270)) && Gravity < -1.5 && TerrainId != noone && 
-                    (Action == consActionNormal || Action == consActionJumping || Action == consActionSpring || Action == consActionRolling)){
+                    (Action == ActionNormal || Action == ActionJumping || Action == ActionSpring || Action == ActionRolling)){
                         scrPlayerResetTrail();
                         if((Angle > 45 && Angle < 135))
                             AngleMode = 1;
@@ -146,48 +143,49 @@
                         
                         GravityMax    = 0;
 
-                        if(KeyDown == true &&(Action == consActionNormal || Action == consActionJumping)){
+                        if(KeyDown == true &&(Action == ActionNormal || Action == ActionJumping)){
                             scrPlayerResetTrail();
                             audio_play_sound(sndPlayerRoll, 1, false);
-                            Action = consActionRolling;
+                            Action = ActionRolling;
                         }
                         exit;
                     }else{
                         if(Gravity < 0)
                             Gravity = 0;
-                        TerrainId = noone;
-                        Ground = false;
-                        Angle = 0;
-                        Landed = false;
-                        AngleMode = 0;
+                            
+                        TerrainId     = noone;
+                        Ground        = false;
+                        Angle         = 0;
+                        Landed        = false;
+                        AngleMode     = 0;
 
                         scrPushPlayerX();
-                        y = Y;
+                        
+                        y             = Y;                        
                         scrPushPlayerYDown();
-                        TerrainId = noone;
-                        GravityMax = 0;
+                        
+                        TerrainId     = noone;
+                        GravityMax    = 0;
                         exit;
                     }
                 }else{
                     if(Gravity < 0)
                         Gravity = 0;
-                    TerrainId = noone;
-                    Ground = false;
-                    Angle = 0;
-                    Landed = false;
-                    AngleMode = 0;
+                    
+                    TerrainId     = noone;
+                    Ground        = false;
+                    Angle         = 0;
+                    Landed        = false;
+                    AngleMode     = 0;
 
                     scrPushPlayerX();
-                   // y = Y;
                     scrPushPlayerYDown();
-                    TerrainId = noone;
-                    GravityMax = 0;
+                    TerrainId    = noone;
+                    GravityMax   = 0;
                     exit;
                 }
             }
             
-           // scrPushPlayerX(); // - Push player out horizontally.
-         
-           scrPlayerHandleSprings();
+            scrPlayerHandleSprings();
             scrPlayerHandleMonitors();
         }

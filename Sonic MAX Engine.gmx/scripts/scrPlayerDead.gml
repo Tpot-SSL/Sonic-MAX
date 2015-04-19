@@ -1,10 +1,10 @@
     
-    if(Action == consActionDead || Action == consActionOuttaHere)
+    if(Action == ActionDead || Action == ActionOuttaHere)
         exit;
     
     audio_play_sound(argument0, 1, false);
     
-    Action             = consActionDead;
+    Action             = ActionDead;
     Speed              = 0;
     Angle              = 0;
     AngleMode          = 0;

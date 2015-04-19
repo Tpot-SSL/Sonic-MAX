@@ -6,7 +6,7 @@
 
     _ObjectHandle = collision_rectangle(x-OffX, y-OffY, x+OffX, y+OffY, objParentEnemy, false, true)
     if(_ObjectHandle != noone){
-        if(Action == consActionRolling || Action == consActionJumping || Action == consActionSpindash || Action == consActionGlide
+        if(Action == ActionRolling || Action == ActionJumping || Action == ActionSpindash || Action == ActionGlide
         || ShieldAction == true || Invincibility == 2 || SuperForm || Homing){
             if(Gravity < 0 || y > _ObjectHandle.y){
                 Gravity -= sign(Gravity);
