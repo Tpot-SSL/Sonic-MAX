@@ -1564,7 +1564,7 @@ if(Underwater == false){
             <string>///Actions
 
     
-    if(Cutscene == false || AllowAction == true){   
+    if((Cutscene == false || AllowAction == true) &amp;&amp; Action &gt;= 0){   
     
         script_execute(Action);
     
